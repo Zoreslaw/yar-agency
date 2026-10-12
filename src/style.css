@@ -21,3 +21,14 @@
 @media(max-width:1000px){.hero{min-height:650px}.hero h1{max-width:85%}}
 @media(max-width:650px){:root{--header-height:78px}.header{height:var(--header-height);padding:16px 6%}.brand{width:70px}.navigation.open{top:calc(var(--header-height) - 1px);background:rgba(20,25,45,.98);color:var(--cream);padding:14px 6% 22px;gap:30px}.hero{height:100svh;min-height:680px;max-height:none;display:block}.hero-video{object-position:55% center}.hero-shade{background:linear-gradient(180deg,rgba(9,13,24,.8),rgba(9,13,24,.12) 150px,transparent 220px),linear-gradient(90deg,rgba(9,13,24,.55),rgba(9,13,24,.18)),linear-gradient(0deg,rgba(9,13,24,.88),transparent 70%)}.hero-content{padding:190px 6% 95px}.hero h1{font-size:clamp(43px,13.3vw,78px);max-width:100%;line-height:1.06;letter-spacing:-.045em}.hero-bottom{display:block;padding-top:35px}.hero-bottom p{font-size:13px;line-height:1.8}.hero-action{width:fit-content;min-height:53px;margin-top:23px;padding:14px 29px;font-size:13px}.video-toggle{right:6%;bottom:24px}.photo-story{padding-top:45px}}
 @media(prefers-reduced-motion:reduce){.header{transition:none}}
+
+/* YAR signal: transparent artwork remains the silhouette, grain stays inside it. */
+.signal-mouth{position:relative;isolation:isolate;flex-shrink:0}
+.signal-mouth>img{width:100%;height:auto}
+.signal-mouth>canvas{position:absolute;left:-22%;top:-22%;width:144%;height:144%;max-width:none;opacity:0;pointer-events:none;transform-origin:center;transition:none}
+.signal-mouth.is-disturbed>img{opacity:0}
+.signal-mouth.is-disturbed>canvas{opacity:1}
+.signal-toggle{position:absolute;right:-12px;bottom:-14px;width:44px;height:44px;font-size:15px;color:var(--cream);opacity:.55}
+.signal-toggle:hover,.signal-toggle:focus-visible{opacity:1}
+@media(prefers-reduced-motion:reduce){.signal-mouth>canvas,.signal-toggle{display:none}.signal-mouth.is-disturbed>img{opacity:1}}
+@media(max-width:650px){.signal-mouth{width:111px;margin-left:14px}}

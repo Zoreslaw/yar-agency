@@ -4,6 +4,7 @@ import '@fontsource-variable/manrope';
 import '@fontsource-variable/league-spartan';
 import assets from './assets.json';
 import './style.css';
+import {MouthSignal} from './MouthSignal.jsx';
 
 const photos = [
  {key:'vocal',title:'Виступ',alt:'Музикант із мікрофоном перед глядачами в камерному залі'},
@@ -75,7 +76,7 @@ function App(){
      <button onClick={()=>openBrief('Організовую подію')}><span>Я організатор</span><span className="choice-note">Формат, місце, дата.</span><span className="choice-sign" aria-hidden="true">+</span></button>
      <button onClick={()=>openBrief('Хочу партнерство')}><span>Інша пропозиція</span><span className="choice-note">Розкажи, що задумав.</span><span className="choice-sign" aria-hidden="true">+</span></button>
     </div></div>
-    <div className="contact-brand"><img className="mouth" src="/media/mouth-source.png" alt="Символ YAR — відкритий рот з логотипом на язиці" loading="lazy"/><span className="brand-question">How are you anyway?</span></div>
+    <div className="contact-brand"><MouthSignal/><span className="brand-question">How are you anyway?</span></div>
    </section>
   </main>
   <footer><Logo/><span className="prototype-label">Прототип. Тексти на погодження.</span><a href="#top">Нагору</a></footer>
