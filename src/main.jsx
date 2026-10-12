@@ -22,6 +22,8 @@ function App(){
  const [menu,setMenu]=useState(false),[paused,setPaused]=useState(false),[gallery,setGallery]=useState(null),[brief,setBrief]=useState(null),[saved,setSaved]=useState(false);
  const video=useRef(null),galleryDialog=useRef(null),briefDialog=useRef(null),userPaused=useRef(false),visible=useRef(true);
  const [role,setRole]=useState('Я артист');
+ const [scrolled,setScrolled]=useState(false);
+ useEffect(()=>{const update=()=>setScrolled(window.scrollY>24);update();window.addEventListener('scroll',update,{passive:true});return()=>window.removeEventListener('scroll',update);},[]);
  useEffect(()=>{
   const el=video.current,media=matchMedia('(prefers-reduced-motion: reduce)');
   const update=()=>{if(media.matches || userPaused.current || document.hidden || !visible.current) el.pause(); else el.play().catch(()=>setPaused(true));};
@@ -40,8 +42,8 @@ function App(){
  };
  return <>
   <a className="skip" href="#moments">До змісту</a>
-  <header className="header">
-   <a href="#top" className="brand" aria-label="YAR — на початок"><Logo/></a>
+  <header className={`header${scrolled?" is-scrolled":""}${menu?" menu-open":""}`}>
+   <a href="#top" className="brand" aria-label="YAR — на початок" onClick={()=>setMenu(false)}><Logo/></a>
    <nav aria-label="Головна навігація" className={menu?'navigation open':'navigation'}>
     <a href="#moments" onClick={()=>setMenu(false)}>Фото</a><a href="#contact" onClick={()=>setMenu(false)}>Співпраця</a>
    </nav>
@@ -49,14 +51,13 @@ function App(){
   </header>
   <main>
    <section className="hero" id="top" aria-labelledby="hero-title">
-    <div className="hero-identity" id="agency">
-     <h1 id="hero-title"><span className="sr-only">YAR — музична агенція</span><Logo className="hero-logo"/></h1>
-     <div className="hero-copy"><p>Музична агенція.</p><a href="#contact">Артистам та організаторам</a></div>
+    <video ref={video} className="hero-video" src="/media/backstage.mp4" poster="/media/backstage.jpg" muted loop playsInline preload="metadata" onPlay={()=>setPaused(false)} onPause={()=>setPaused(true)} aria-hidden="true"/>
+    <div className="hero-shade" aria-hidden="true"/>
+    <div className="hero-content">
+     <h1 id="hero-title">Ближче<br/>до музики.</h1>
+     <div className="hero-bottom"><p>YAR — музична агенція.<br/>Для артистів та організаторів.</p><a className="hero-action" href="#contact">Співпраця</a></div>
     </div>
-    <div className="hero-film">
-     <video ref={video} className="hero-video" src="/media/backstage.mp4" poster="/media/backstage.jpg" muted loop playsInline preload="metadata" onPlay={()=>setPaused(false)} onPause={()=>setPaused(true)} aria-hidden="true"/>
-     <button className="video-toggle" onClick={toggleVideo} aria-label={paused?'Відтворити фонове відео':'Призупинити фонове відео'}>{paused?'Відтворити':'Пауза'}</button>
-    </div>
+    <button className="video-toggle" onClick={toggleVideo} aria-label={paused?'Відтворити фонове відео':'Призупинити фонове відео'}>{paused?'Відтворити':'Пауза'}</button>
    </section>
    <section className="photo-story" id="moments">
     <div className="story-heading"><h2>Із залу.</h2><button className="text-link" onClick={()=>setGallery(0)}>Всі фотографії ({photos.length})</button></div>

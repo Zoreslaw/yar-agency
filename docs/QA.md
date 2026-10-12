@@ -19,3 +19,12 @@ Known limits: draft copy, unconfirmed services/contacts, temporary Manrope font 
 - Mobile menu open/anchor-close passes; 390px and 320px checks found no document overflow or text clipping.
 - Media and local brief implementation retained; no outbound submission was added.
 - Previous screenshots retained under qa/v1, revision screenshots use v2 prefixes.
+
+## Revision 3 — full-width hero and fixed header
+- Restored full-width monochrome film and large cream title overlay, per user preference.
+- Fixed header: transparent at scrollY <=24, rgba(20,25,45,.88) with 16px backdrop blur after 24px; fallback tint remains if blur is unavailable.
+- Readability inspected on drum stage, microphone and engineer shots. Local top/left scrims protect text; video itself is not blurred.
+- Anchor targets account for fixed header through root scroll-padding-top. Photo heading remains below header.
+- 390px and 320px have no horizontal overflow or text clipping. Mobile menu opens and closes after navigation.
+- Skip link raised above fixed header for keyboard access.
+- Screenshots qa/v3-hero.png, qa/v3-mobile.png, qa/v3-header-scroll.png.
