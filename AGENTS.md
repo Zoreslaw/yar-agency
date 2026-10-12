@@ -9,9 +9,9 @@ React 19 + Vite. `npm ci`, `npm run dev`, `npm run build`, `npm run preview`. Ru
 ## Visual contract
 - Palette: ink #1D223D, burgundy #991A1E, cream #FFFBD4, yellow #FFCC00.
 - Keep the original YAR mark. User PNG is cropped only by SVG viewport; never replace it with a text approximation.
-- Quiet monochrome video opening → real color photography → ink cooperation section → burgundy mouth emblem section.
+- Large original cream YAR mark on burgundy, adjacent monochrome video → a photographic sequence with contact sheet → ink collaboration section with mouth emblem.
 - No strobing videos, flashing lights, reversed human movement, or ghosted crossfades. Existing montage uses intentional cuts.
-- Favor large editorial compositions, close typography and original photographs. Do not introduce a generic feature-card grid, gradients unrelated to the materials, decorative counters, or fabricated awards.
+- Favor the original brand mark and original photographs. Headings have varied scale and moderate weight. Do not introduce a generic feature-card grid, gradients unrelated to the materials, decorative counters, or fabricated awards.
 - Manrope is a temporary Cyrillic alternative until licensed Gotham files are supplied. Keep fonts local.
 
 ## Content and interaction

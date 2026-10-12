@@ -1,6 +1,6 @@
-# YAR / На відстані звуку
+# YAR / музична агенція
 
-React + Vite prototype. Original brand palette, real supplied photography, a quiet monochrome backstage montage, a photo gallery, collaboration accordions and a downloadable local brief.
+React + Vite prototype. Original brand palette, real supplied photography, a quiet monochrome backstage montage, a photo gallery, direct collaboration choices and a downloadable local brief.
 
 ## Run
 
