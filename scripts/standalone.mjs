@@ -8,7 +8,7 @@ const css=html.match(/<link[^>]+href="([^"]+\.css)"[^>]*>/);
 let code=await readFile(resolve(root,'dist',js[1].replace(/^\//,'')),'utf8');
 let styles=await readFile(resolve(root,'dist',css[1].replace(/^\//,'')),'utf8');
 code=code.replaceAll('/media/','./media/').replaceAll('</script','<\\/script');
-styles=styles.replaceAll('/assets/','./assets/');
+styles=styles.replaceAll('/assets/','./assets/').replaceAll('/media/','./media/').replaceAll('/fonts/','./fonts/');
 html=html.replace(js[0],'').replace(css[0],()=>'<style>'+styles+'</style>').replace('</body>',()=>'<script>'+code+'</script></body>');
 await writeFile(resolve(root,'dist/preview.html'),html);
 console.log('Created dist/preview.html');

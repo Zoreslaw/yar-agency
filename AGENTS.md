@@ -1,7 +1,7 @@
 # YAR Agency — project instructions
 
 ## Intent
-Build a Ukrainian independent music agency presentation, based on actual user-supplied branding and photographs. Maintain the concept in docs/DIRECTION.md. This prototype is for design review, not approved company messaging.
+Build a Ukrainian independent music agency presentation for artists, musicians, bands and their managers, based on actual user-supplied branding and photographs. Maintain the concept in docs/DIRECTION.md. This prototype is for design review, not approved company messaging.
 
 ## Stack and commands
 React 19 + Vite. `npm ci`, `npm run dev`, `npm run build`, `npm run preview`. Run `npm run standalone` after a build to generate dist/preview.html. Vercel configuration is included. Node 24, npm and package-lock.json are the canonical toolchain. GitHub repository: Zoreslaw/yar-agency. Deployment configuration is ready for Vercel; no backend is connected.
@@ -16,9 +16,10 @@ React 19 + Vite. `npm ci`, `npm run dev`, `npm run build`, `npm run preview`. Ru
 
 ## Content and interaction
 - No invented artists, event dates, company history, numbers, client names, addresses, emails or testimonials.
-- Photos are atmosphere, not named case studies until details are provided.
+- User confirmed the existing gallery belongs to the continuing wuha collaboration example. Preserve all photos; do not invent case-study results, dates or credits. The team reference photo is explicitly labelled stock, not Sofia and Vika.
 - Draft Ukrainian copy is marked in the footer. Confirm company scope before turning proposals into claims.
-- Brief form downloads locally; never pretend it submitted. Connect a real destination only when supplied.
+- Brief form downloads locally; never pretend it submitted. Email yars.agency@gmail.com and Instagram @yar_agcy are supplied in the service PDF and may be linked. Do not add form submission without a real integration.
+- Services are sourced from the supplied service PDF; package prices are omitted per user instruction. Scope and cost are agreed individually. Two formats: specific tasks/concerts/trips and continuing artist collaboration.
 - Preserve keyboard focus, dialog Escape, meaningful alt text, reduced-motion behavior and video pause.
 
 ## Assets and QA

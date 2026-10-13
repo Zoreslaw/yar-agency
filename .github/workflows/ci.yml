@@ -1,7 +1,7 @@
 name: Build
 on:
   push:
-    branches: [main]
+    branches: ['**']
   pull_request:
   workflow_dispatch:
 permissions:
@@ -21,3 +21,9 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: yar-site-${{ github.sha }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
