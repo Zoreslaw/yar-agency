@@ -2,7 +2,7 @@
 
 ## Local revision — 12 October 2026
 
-Working checkout: `/Users/xxx/Projects/Yar.agcy`, branch `codex/vercel-deployment-pipeline`. React 19 + Vite, Node 24. Revision prepared for the user-requested commit and push; main remains the production branch. Start with AGENTS.md.
+Working checkout: `/Users/xxx/Projects/Yar.agcy`, target branch `main`. React 19 + Vite, Node 24. User requested merging the verified feature revision into main. Feature deployment and GitHub Build succeeded; main is the production branch. Start with AGENTS.md.
 
 Audience: artists, musicians, bands and their managers. The site presents help with individual tasks/concerts/trips or continuing collaboration with an artist. It is not a ticket shop or event calendar.
 

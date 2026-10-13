@@ -1,1 +1,1 @@
-Read and follow ../AGENTS.md and ../docs/HANDOFF.md before editing. Repository instructions apply to all AI-assisted changes. Never add AI authorship or Co-authored-by trailers.
+Read and follow ../AGENTS.md and ../docs/HANDOFF.md before editing. The user owns and authors this project. Never attribute authorship or contributions to an AI tool or agent, add Co-authored-by trailers, bot identities or promotional tool credits. Use the user's Git identity and neutral descriptive branch names. Preserve required third-party licenses and factual asset provenance.
