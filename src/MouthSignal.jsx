@@ -1,9 +1,8 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef} from 'react';
 
 // Local signal interference: keep the actual artwork, disturb the full silhouette without cropping its edges.
 export function MouthSignal() {
  const host = useRef(null), canvas = useRef(null);
- const [paused, setPaused] = useState(false);
  useEffect(() => {
   const el = host.current, output = canvas.current, ctx = output.getContext('2d');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -15,10 +14,10 @@ export function MouthSignal() {
    el.classList.remove('is-disturbed');
    output.style.transform = '';
   };
-  const allowed = () => ready && visible && !paused && !motion.matches && !document.hidden && !document.querySelector('dialog[open]');
+  const allowed = () => ready && visible && !motion.matches && !document.hidden && !document.querySelector('dialog[open]');
   const schedule = (delay = 2600 + Math.random() * 2000) => {
    clearTimeout(timer);
-   if (visible && !paused && !motion.matches && !document.hidden) timer = setTimeout(burst, delay);
+   if (visible && !motion.matches && !document.hidden) timer = setTimeout(burst, delay);
   };
   const draw = elapsed => {
    const w = buffer.width, h = buffer.height;
@@ -103,10 +102,9 @@ export function MouthSignal() {
    document.removeEventListener('visibilitychange', update);
    el.removeEventListener('pointerenter', burst);
   };
- }, [paused]);
+ }, []);
  return <div className="mouth signal-mouth" ref={host}>
   <img src="/media/mouth-source.png" alt="Символ YAR — відкритий рот з логотипом на язиці" loading="lazy"/>
   <canvas ref={canvas} aria-hidden="true"/>
-  <button className="signal-toggle" onClick={() => setPaused(!paused)} aria-label={paused ? 'Увімкнути ефект поміх' : 'Призупинити ефект поміх'} aria-pressed={paused} title={paused ? 'Увімкнути ефект' : 'Призупинити ефект'}>{paused ? '▷' : 'Ⅱ'}</button>
  </div>;
 }

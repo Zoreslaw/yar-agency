@@ -89,3 +89,26 @@ Team: user confirmed two people, Sofia and Vika. A single shared photo supports 
 Stage experiment: transparent metal raster truss repeats down the right side of the post-hero page; independently placed raster lamps in services/team/contact. Soft cream SVG cones fade in over 1.4s when each section intersects the viewport's central region. No strobe, vibration or endless lamp movement. Observer handles section visibility; hidden-page guards disable light. A preference button turns the effect off and persists locally. Reduced motion disables light; mobile hides the long truss and keeps a small edge-cropped local lamp. Artwork and text remain visible when all effects are disabled.
 
 The original logo, palette, montage, gallery media and MouthSignal are preserved. Contact destinations are sourced from the PDF. Brief still saves a local text file and never submits.
+
+## Detail revision — 13 October 2026
+
+User approved a temporary stock photo inside the dressing-room mirror, with team names/copy alongside, instead of text inside nested frames. Photo-reference caption remains truthful. Removed all ten user-selected small captions, visible pause controls, prototype footer and separate back-to-top action. Retained local brief download explanation within the dialog. Shared cut-corner primary buttons and slash-separated monochrome service ticker replace generic button surfaces and stars. Reduced-motion/visibility guards remain despite removal of manual controls at user request.
+
+Team follow-up: user requested “Наша команда.” and alternating even/odd dressing-room lights. Eight-second cycle with opposing circuits and soft transitions. Wuha should communicate relevant agency experience with confirmed responsibilities, rather than an isolated photo link; factual scope requested before revising that example.
+
+Lamp correction: retain the accepted photographic mirror dimensions. Fixed shaded glass plus a warm emissive overlay replaces muddy animated bulb colours. Motion controls opposing circuits, long holds and short incandescent fades; no abrupt flashes. Wuha example now explains the confirmed organization/artist responsibility split after the two formats. Reference: https://motion.dev/docs/react-animation and https://motion.dev/docs/react-transitions .
+
+Final visual follow-up: case copy focuses on the artist’s task and concrete agency responsibilities, informed by GOV.UK writing guidance (https://www.gov.uk/service-manual/design/writing-for-user-interfaces) and NN/g credibility research (https://www.nngroup.com/articles/trustworthy-design/). No borrowed claims. Large wuha photo is mounted with cream paper/tape and preview-only near-monochrome warm treatment. Mirror reduced to max 540px and a 6:5 photo. Burgundy #991A1E restored to service ticker per user brand sheet.
+
+Ticker text follow-up: user requested a brighter text variant; text and slash separators now use brand yellow #FFCC00 on burgundy #991A1E.
+
+## Motion rhythm and case annotation
+
+User rejected the thin isolated stage cable. Research: https://humanshapes.co/projects/marmoset (line art integrated with record/flyer-inspired collage), https://tympanus.net/codrops/2017/12/05/creative-svg-strokes-animation/ (scoped SVG stroke sequencing, historical inspiration only), https://motion.dev/docs/performance (opacity/transform emphasis). A short original drawn arrow now refers directly to the mounted case photo. No copied vector or added GSAP. Unified shorter vertical entrances, no background animation, no scroll lock, no repeated section reveals. Ticker pauses outside viewport; hidden-page state no longer switches layout.
+
+Questionnaires replace generic “brief” language. Different fields for concerts, tours and ongoing artist collaboration; ongoing work starts a conversation rather than implying a fixed purchasable package. Concert questions sourced from actual user-supplied form. Local download remains until genuine submission integration is agreed.
+
+
+Collaboration tape — 13 October 2026: the two formats are separated by an inline SVG strip of torn cream stage tape, vertical on desktop and horizontal below 650px. A single 550ms reveal follows the existing section entrance; reduced motion stays static and page visibility pauses it. Removed the decorative arrow above wuha. No new dependencies or external assets.
+
+Questionnaire refinement: react-hook-form supplies validation/focus handling rather than browser-only popups. Compact single-row header, one scrolling field area and anchored action. Requiredness limited to information needed to start a conversation; optional concert/tour details accept unknowns. Error messages placed near fields with aria-describedby/aria-invalid. Research: https://www.w3.org/WAI/tutorials/forms/validation/ ; https://www.w3.org/WAI/tutorials/forms/instructions/ ; official react-hook-form useForm/register documentation source at https://github.com/react-hook-form/react-hook-form and https://github.com/react-hook-form/documentation .

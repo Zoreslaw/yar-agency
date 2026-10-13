@@ -3,7 +3,7 @@ import {useEffect, useRef, useState} from 'react';
 // Retain the old preference: visitors who disabled the stage experiment keep that choice.
 export function useBackstageMotion() {
  const ref = useRef(null);
- const [enabled, setEnabled] = useState(() => {
+ const [enabled] = useState(() => {
   try {return localStorage.getItem('yar-stage-light') !== 'off';} catch {return true;}
  });
  const [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -30,9 +30,12 @@ export function useBackstageMotion() {
   ref.current.querySelectorAll('[data-reveal]').forEach(element => observer.observe(element));
   return () => observer.disconnect();
  }, [enabled, reduced, pageVisible]);
- const toggle = () => setEnabled(value => {
-  try {localStorage.setItem('yar-stage-light', value ? 'off' : 'on');} catch { /* Optional preference. */ }
-  return !value;
- });
- return {ref, enabled: enabled && !reduced && pageVisible, reduced, toggle};
+ useEffect(() => {
+  const observer = new IntersectionObserver(entries => {
+   for (const entry of entries) entry.target.classList.toggle('is-loop-visible', entry.isIntersecting);
+  }, {threshold:0});
+  ref.current.querySelectorAll('[data-loop]').forEach(element => observer.observe(element));
+  return () => observer.disconnect();
+ }, []);
+ return {ref, enabled: enabled && !reduced, active: enabled && !reduced && pageVisible, reduced};
 }
