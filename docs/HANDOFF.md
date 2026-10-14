@@ -97,7 +97,5 @@ Colour follow-up: contextual hoverTone replaces universal yellow. Hero red→cre
 
 Collaboration hover correction — 14 October 2026: removed the legacy .format-column>button:hover yellow text rule that outranked the component hover and made yellow text disappear on the yellow fill. Labels now have an explicit foreground stacking layer. Actual pointer hover checked separately for both actions at 1440: yellow #FFCC00 fill and ink #1D223D text. 320px inspected, no horizontal overflow. Check/build/standalone and whitespace checks passed. Capture: ignored qa/imprint/format-hover-fixed.png.
 
-## Service stories — 14 October 2026
-Branch feature/service-stories, preserving pre-existing local changes. New ServiceStories.jsx and service-stories.css replace the six plain service rows. Three compositions use supplied wuha photography, HTML process notes, an SVG route, and generated paper texture. Existing imprint CTA opens questionnaire with Other selected; all five new photo triggers open corresponding original gallery indexes. Existing introduction, collaboration, team and contacts preserved. See DIRECTION and ASSETS for concept and provenance. No added dependency, commit, push or deployment.
-
-Service correction: latest version replaces the rejected collages with three descriptive service groups on one burgundy surface. Single warm-monochrome photo per group; no paper notes, photo captions or text overlays. Service CTA reads Обговорити задачу and opens Other in the existing questionnaire. Earlier service-story visual notes are superseded. User requested committing the current accumulated local revision; no push or deployment requested.
+## Service section — 14 October 2026
+Main retains the six existing service rows. The three scenario redesign lives on feature/service-stories and is intentionally separate. Colors, shared buttons, questionnaire improvements and logo-free Mouth are in main.

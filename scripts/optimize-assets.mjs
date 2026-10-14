@@ -3,10 +3,6 @@ import {mkdir,writeFile,copyFile,stat} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('../',import.meta.url));
-if (process.argv[2] === '--service-paper') {
- await sharp(resolve(root,'source-assets/service-paper.png')).resize({width:1000,withoutEnlargement:true}).webp({quality:78}).toFile(resolve(root,'public/media/service-paper.webp'));
- process.exit(0);
-}
 if (process.argv[2] === '--mouth') {
  await sharp(resolve(root,'source-assets/mouth-no-logo-cutout.png')).resize({width:640,withoutEnlargement:true}).webp({quality:90,effort:6}).toFile(resolve(root,'public/media/mouth-no-logo.webp'));
  process.exit(0);

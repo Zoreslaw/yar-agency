@@ -8,7 +8,6 @@ import './style.css';
 import {ImprintAction, UtilityButton, IconButton} from './components/Buttons.jsx';
 import {MouthSignal} from './MouthSignal.jsx';
 import {SceneEntrance} from './SceneEntrance.jsx';
-import {ServiceStories} from './ServiceStories.jsx';
 import {MirrorLamps} from './MirrorLamps.jsx';
 const CooperationModal=lazy(()=>import('./CooperationModal.jsx'));
 import {useBackstageMotion} from './StageLighting.jsx';
@@ -32,6 +31,14 @@ function App(){
  const [menu,setMenu]=useState(false),[gallery,setGallery]=useState(null),[brief,setBrief]=useState(null);
  const briefTrigger=useRef(null);
  const video=useRef(null),galleryDialog=useRef(null),visible=useRef(true);
+ const directions=[
+  {title:'Booking',heading:'Знайти місце для концерту.',text:'Шукаємо клуби й фестивалі, говоримо з майданчиками. Разом узгоджуємо дати, умови й технічні деталі — і розбираємось із документами.'},
+  {title:'Логістика',heading:'Організувати поїздку.',text:'Продумуємо маршрут, транспорт і ночівлю. Збираємо побутові та технічні потреби, координуємо поїздку й супроводжуємо в дорозі.'},
+  {title:'Продакшн концерту',heading:'Підготувати концерт.',text:'Саундчек, звук, світло, гримерка. Узгоджуємо таймінг і роботу команди, тримаємо зв’язок із клубом. Допомагаємо з перекладом.'},
+  {title:'Промоція',heading:'Розповісти про виступ.',text:'Беремо ваші готові матеріали й допомагаємо розповісти про подію: соцмережі, реклама, афіші та місцеві медіа.'},
+  {title:'Візуальна комунікація',heading:'Оформити матеріали.',text:'Готуємо афіші, Stories, Reels і press kit. Адаптуємо тексти українською, польською та англійською.'},
+  {title:'Фото / відео',heading:'Зняти концерт і backstage.',text:'Знімаємо концерт і те, що відбувається за сценою. Фотографії, відео й короткі Reels / TikTok — формат обговоримо разом.'}
+ ];
  const [questionnaireReady,setQuestionnaireReady]=useState(false);
  const [scrolled,setScrolled]=useState(false);
  useEffect(()=>{const update=()=>setScrolled(window.scrollY>24);update();window.addEventListener('scroll',update,{passive:true});return()=>window.removeEventListener('scroll',update);},[]);
@@ -75,7 +82,9 @@ function App(){
        </div>
       </div>
      </SceneEntrance>
-     <ServiceStories enabled={stageMotion.active} onGallery={setGallery} onDiscuss={event=>{briefTrigger.current=event.currentTarget;event.currentTarget.focus();openBrief('Інше');}}/>
+     <div className="service-cues">{directions.map(direction=><article className="service-cue" data-reveal key={direction.title}>
+      <div className="cue-inner"><div><h3>{direction.heading}</h3></div><p>{direction.text}</p></div>
+     </article>)}</div>
      <div className="agency-ticker" data-loop role="region" aria-label="Booking, концерти, супровід артистів"><div className="ticker-track" aria-hidden="true">{[0,1].map(i=><span className="ticker-copy" key={i}>BOOKING <span>/</span> КОНЦЕРТИ <span>/</span> СУПРОВІД АРТИСТІВ <span>/</span> YAR <span>/</span></span>)}</div></div>
      <div className="collaboration" id="collaboration" data-reveal><div className="collaboration-intro"><h3>На один концерт.<br/>Або надовго.</h3></div><div className="collaboration-formats">
       <span className="format-tape" aria-hidden="true"><svg className="tape-vertical" viewBox="0 0 24 240" preserveAspectRatio="none"><path fill="currentColor" d="M3 3 7 5 10 1 14 4 18 2 21 6 20 38 22 70 20 106 21 144 19 179 21 210 20 237 16 234 13 239 9 235 5 238 2 233 3 201 2 170 4 138 2 103 3 71 2 39Z"/><path stroke="#1D223D" opacity=".16" strokeWidth=".7" d="m7 15-1 51m4 17 1 68m5-127-1 87m-9 56 1 54m8-90 1 83M4 48l15-2M3 118l17 2M4 192l15-1"/></svg><svg className="tape-horizontal" viewBox="0 0 240 24" preserveAspectRatio="none"><g transform="translate(240 0) rotate(90)"><path fill="currentColor" d="M3 3 7 5 10 1 14 4 18 2 21 6 20 38 22 70 20 106 21 144 19 179 21 210 20 237 16 234 13 239 9 235 5 238 2 233 3 201 2 170 4 138 2 103 3 71 2 39Z"/><path stroke="#1D223D" opacity=".16" strokeWidth=".7" d="m7 15-1 51m4 17 1 68m5-127-1 87m-9 56 1 54m8-90 1 83M4 48l15-2M3 118l17 2M4 192l15-1"/></g></svg></span>
