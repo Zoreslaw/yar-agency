@@ -182,3 +182,6 @@ Collaboration hover correction — 14 October 2026: removed the legacy .format-c
 
 ## Main / service separation — 14 October 2026
 The feature branch’s three-scenario section is excluded from main pending separate review. Main source restored the six service rows while retaining the brand, button and questionnaire changes.
+
+## Service redesign preview branch — 14 October 2026
+feature/service-stories reapplies the three-scene section on top of the updated main branch. At 320px there is no horizontal overflow and no text/photo intersection; at 390px headings and task lists fit. Desktop and mobile compositions inspected. Existing gallery opens the expected supplied wuha image; Escape restores focus. The conversation CTA opens the existing questionnaire with Other selected. Reduced-motion setting remains respected by the shared entrance system. Main is not changed by this branch commit.
