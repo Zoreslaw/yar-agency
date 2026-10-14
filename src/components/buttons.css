@@ -1,0 +1,76 @@
+/* Primary actions own the print; interface controls own only feedback and hit area. */
+.yar-action {
+ --action-fill:var(--cream); --action-ink:var(--red);
+ --action-hover-fill:var(--yellow); --action-hover-ink:var(--ink);
+ position:relative; isolation:isolate; display:inline-flex; align-items:center; justify-content:center;
+ gap:10px; width:fit-content; max-width:100%; min-height:56px; padding:17px 26px;
+ border:0; border-radius:0; background:transparent; color:var(--action-ink);
+ font-family:'Manrope Variable',sans-serif; font-size:15px; font-weight:700;
+ letter-spacing:-.035em; line-height:1.4; text-align:center; text-decoration:none;
+ transform:rotate(-.7deg); transition:transform .12s ease,color .12s ease;
+}
+.yar-action::before {
+ content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; background:var(--action-fill);
+ clip-path:polygon(1% 4%,16% 2%,17% 4%,38% 1%,54% 3%,55% 1%,79% 2%,99% 0,98.8% 24%,100% 26%,99% 52%,99.5% 77%,98.8% 97%,83% 99%,82% 97%,62% 100%,43% 98%,42% 100%,21% 97%,0 99%,1% 78%,0 76%,1% 51%,0 30%);
+ transition:background .12s ease;
+}
+.yar-action::after {
+ content:""; position:absolute; pointer-events:none; left:12px; right:14px; top:9px; bottom:9px; opacity:.55;
+ background:linear-gradient(currentColor,currentColor) left top/7px 1px no-repeat,linear-gradient(currentColor,currentColor) right bottom/10px 1px no-repeat;
+}
+.yar-action--red {--action-fill:var(--red); --action-ink:var(--cream)}
+.yar-action--ink {--action-fill:var(--ink); --action-ink:var(--cream)}
+.yar-action--yellow {--action-fill:var(--yellow); --action-ink:var(--ink)}
+.yar-action--hover-cream {--action-hover-fill:var(--cream); --action-hover-ink:var(--red)}
+.yar-action--hover-ink {--action-hover-fill:var(--ink); --action-hover-ink:var(--cream)}
+.yar-action--hover-red {--action-hover-fill:var(--red); --action-hover-ink:var(--cream)}
+.yar-action--large {font-size:clamp(19px,2vw,25px); min-height:72px; padding:22px 32px}
+.yar-action--small {min-height:48px; padding:13px 20px; font-size:13px}
+@media(hover:hover) and (pointer:fine) {
+ .yar-action:hover:not(:disabled) {color:var(--action-hover-ink); text-decoration:none; transform:rotate(-.7deg) translateY(-1px)}
+ .yar-action:hover:not(:disabled)::before {background:var(--action-hover-fill)}
+}
+.yar-action:active:not(:disabled) {transform:rotate(-.7deg) translateY(1px)}
+.yar-action:focus-visible {outline:2px solid var(--action-fill); outline-offset:5px}
+.yar-action:disabled {opacity:.6; cursor:default; transform:none}
+.yar-action__label {position:relative; z-index:1; min-width:0; overflow-wrap:anywhere}
+.yar-action__spinner {width:16px; height:16px; flex-shrink:0; border:2px solid currentColor; border-right-color:transparent; border-radius:50%; animation:action-spin .8s linear infinite}
+@keyframes action-spin {to{transform:rotate(360deg)}}
+
+.yar-control {display:inline-flex; align-items:center; justify-content:center; gap:8px; min-width:44px; min-height:44px; padding:10px 12px; border:0; border-radius:0; background:transparent; color:inherit; font-size:13px; line-height:1.4; transition:background .15s,color .15s}
+@media(hover:hover) and (pointer:fine) {
+ .yar-control:hover:not(:disabled) {background:color-mix(in srgb,currentColor 9%,transparent)}
+}
+.yar-control:focus-visible {outline:2px solid currentColor; outline-offset:3px}
+.yar-control:disabled {opacity:.5; cursor:default}
+.yar-control--icon {width:44px; height:44px; padding:10px; flex-shrink:0}
+.yar-control--icon svg {width:24px; height:24px; flex-shrink:0}
+
+/* Placement belongs to the page; button appearance stays above. */
+.page-hero-action {margin-top:0}
+.case-gallery-action {margin-top:22px}
+.team-contact-action {margin-top:24px}
+.contact-questionnaire-action {margin:14px 0 5px}
+.collaboration-formats .format-column>.yar-action {width:fit-content; min-height:0; padding:20px 26px; text-align:left}
+.collaboration-formats .format-column>.format-action .yar-action__label {font-family:var(--display-font); font-size:clamp(25px,2.5vw,36px); font-weight:500; line-height:1.2}
+.format-description {font-size:14px; line-height:1.8; max-width:390px; margin:22px 0 0; opacity:.8}
+.request-actions .yar-action {min-width:120px}
+.request-actions .request-back {color:var(--ink)}
+.request-close {color:var(--ink)}
+.header .menu-toggle.yar-control {display:none}
+@media(max-width:650px) {
+ .yar-action {font-size:14px; padding:17px 22px}
+ .yar-action--large {font-size:20px; min-height:68px; padding:21px 24px}
+ .yar-action--small {font-size:13px; min-height:48px; padding:13px 18px}
+ .page-hero-action {margin-top:23px}
+ .header .menu-toggle.yar-control {display:inline-flex}
+ .collaboration-formats .format-column>.yar-action {padding:18px 24px}
+ .collaboration-formats .format-column>.format-action .yar-action__label {font-size:28px}
+ .format-description {font-size:13px; margin-top:20px}
+ .request-actions .yar-action {flex:1}
+}
+@media(prefers-reduced-motion:reduce) {
+ .yar-action,.yar-action:hover:not(:disabled),.yar-action:active:not(:disabled) {transform:none; transition:none}
+ .yar-action::before,.yar-control {transition:none}
+ .yar-action__spinner {animation:none}
+}

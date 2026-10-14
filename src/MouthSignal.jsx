@@ -90,7 +90,7 @@ export function MouthSignal() {
    output.height = Math.round(buffer.height * 1.44);
    ready = true; update();
   };
-  source.src = '/media/mouth-source.png';
+  source.src = '/media/mouth-no-logo.webp';
   const observer = new IntersectionObserver(([entry]) => {visible = entry.isIntersecting; update();}, {threshold: .5});
   observer.observe(el);
   motion.addEventListener('change', update);
@@ -104,7 +104,7 @@ export function MouthSignal() {
   };
  }, []);
  return <div className="mouth signal-mouth" ref={host}>
-  <img src="/media/mouth-source.png" alt="Символ YAR — відкритий рот з логотипом на язиці" loading="lazy"/>
+  <img src="/media/mouth-no-logo.webp" alt="Відкритий рот із висунутим язиком" loading="lazy"/>
   <canvas ref={canvas} aria-hidden="true"/>
  </div>;
 }

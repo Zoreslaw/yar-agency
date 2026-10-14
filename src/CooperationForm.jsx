@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
+import {ImprintAction, UtilityButton} from './components/Buttons.jsx';
 import {FormProvider, useForm, useFormContext, useWatch, useController} from 'react-hook-form';
-import {TextInput, Textarea, Select, MultiSelect, NumberInput, SegmentedControl, Button} from '@mantine/core';
+import {TextInput, Textarea, Select, MultiSelect, NumberInput, SegmentedControl} from '@mantine/core';
 import {DatePickerInput} from '@mantine/dates';
 import {useMediaQuery} from '@mantine/hooks';
 import dayjs from 'dayjs';
@@ -52,7 +53,7 @@ function TypePicker(){
 }
 const steps=['Знайомство','Деталі','Перевірка'];
 const titles=['Почнімо зі знайомства.', 'Твій задум. Наші задачі.', 'Усе важливе — тут.'];
-export function CooperationForm({initialType, active, actionIcon}) {
+export function CooperationForm({initialType, active}) {
  const methods = useForm({mode:'onTouched', reValidateMode:'onChange', shouldFocusError:true,
   defaultValues:{type:initialType,...Object.fromEntries(Object.keys(labels).map(key=>[key,''])),dateMode:'exact',dateRange:[null,null],datePeriod:'',scope:[]}});
  const {control, setValue, clearErrors} = methods;
@@ -130,6 +131,6 @@ export function CooperationForm({initialType, active, actionIcon}) {
    {saved&&<div className="request-success" role="status"><span aria-hidden="true">↗</span><strong>Залишаймося на зв’язку.</strong><p>Якщо хочеш щось додати до відповідей, напиши нам.</p><a href="mailto:yars.agency@gmail.com">Написати YAR ↗</a></div>}
    {sendError&&<p ref={errorNotice} tabIndex={-1} className="request-send-error" role="alert">{sendError}</p>}
   </div>
-  <div className="request-footer"><div className="request-footer-note">{saved?'':step===0?'':step===1?'* Обов’язкове поле. Решта — за бажанням.':'Натискаючи «Надіслати», ти передаєш відповіді команді YAR для обговорення співпраці.'}</div><div className="request-actions">{!saved&&step>0&&<Button type="button" variant="subtle" disabled={sending} className="request-back" onClick={()=>{setSendError('');goTo(step-1);}}>Назад</Button>}{!saved&&<Button type="submit" className="ticket" loading={sending} rightSection={actionIcon}>{step===2?'Надіслати анкету':'Далі'}</Button>}</div></div>
+  <div className="request-footer"><div className="request-footer-note">{saved?'':step===0?'':step===1?'* Обов’язкове поле. Решта — за бажанням.':'Натискаючи «Надіслати», ти передаєш відповіді команді YAR для обговорення співпраці.'}</div><div className="request-actions">{!saved&&step>0&&<UtilityButton disabled={sending} className="request-back" onClick={()=>{setSendError('');goTo(step-1);}}>Назад</UtilityButton>}{!saved&&<ImprintAction type="submit" tone="red" size="small" busy={sending}>{step===2?'Надіслати анкету':'Далі'}</ImprintAction>}</div></div>
  </div></form></FormProvider>;
 }
