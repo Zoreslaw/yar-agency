@@ -28,6 +28,7 @@ function Photo({item,...props}){return <img src={assets[item.key]} srcSet={`${as
 function App(){
  const stageMotion=useBackstageMotion();
  const [menu,setMenu]=useState(false),[gallery,setGallery]=useState(null),[brief,setBrief]=useState(null);
+ const briefTrigger=useRef(null);
  const video=useRef(null),galleryDialog=useRef(null),visible=useRef(true);
  const directions=[
   {title:'Booking',heading:'Знайти місце для концерту.',text:'Шукаємо клуби й фестивалі, говоримо з майданчиками. Разом узгоджуємо дати, умови й технічні деталі — і розбираємось із документами.'},
@@ -86,8 +87,8 @@ function App(){
      <div className="agency-ticker" data-loop role="region" aria-label="Booking, концерти, супровід артистів"><div className="ticker-track" aria-hidden="true">{[0,1].map(i=><span className="ticker-copy" key={i}>BOOKING <span>/</span> КОНЦЕРТИ <span>/</span> СУПРОВІД АРТИСТІВ <span>/</span> YAR <span>/</span></span>)}</div></div>
      <div className="collaboration" id="collaboration" data-reveal><div className="collaboration-intro"><h3>На один концерт.<br/>Або надовго.</h3></div><div className="collaboration-formats">
       <span className="format-tape" aria-hidden="true"><svg className="tape-vertical" viewBox="0 0 24 240" preserveAspectRatio="none"><path fill="currentColor" d="M3 3 7 5 10 1 14 4 18 2 21 6 20 38 22 70 20 106 21 144 19 179 21 210 20 237 16 234 13 239 9 235 5 238 2 233 3 201 2 170 4 138 2 103 3 71 2 39Z"/><path stroke="#1D223D" opacity=".16" strokeWidth=".7" d="m7 15-1 51m4 17 1 68m5-127-1 87m-9 56 1 54m8-90 1 83M4 48l15-2M3 118l17 2M4 192l15-1"/></svg><svg className="tape-horizontal" viewBox="0 0 240 24" preserveAspectRatio="none"><g transform="translate(240 0) rotate(90)"><path fill="currentColor" d="M3 3 7 5 10 1 14 4 18 2 21 6 20 38 22 70 20 106 21 144 19 179 21 210 20 237 16 234 13 239 9 235 5 238 2 233 3 201 2 170 4 138 2 103 3 71 2 39Z"/><path stroke="#1D223D" opacity=".16" strokeWidth=".7" d="m7 15-1 51m4 17 1 68m5-127-1 87m-9 56 1 54m8-90 1 83M4 48l15-2M3 118l17 2M4 192l15-1"/></g></svg></span>
-      <div className="format-column"><button onClick={()=>openBrief('Концерт')}><span>Окрема задача<br/>або подія</span><p>Booking, поїздка чи організація концерту. Підключаємось там, де потрібна допомога.</p><Arrow diagonal/></button></div>
-      <div className="format-column"><button onClick={()=>openBrief('Постійна співпраця')}><span>Постійна робота<br/>з артистом</span><p>Для гуртів, яким потрібна організаційна команда на постійній основі.</p><Arrow diagonal/></button>
+      <div className="format-column"><button onClick={event=>{briefTrigger.current=event.currentTarget;event.currentTarget.focus();openBrief('Концерт');}}><span>Окрема задача<br/>або подія</span><p>Booking, поїздка чи організація концерту. Підключаємось там, де потрібна допомога.</p><Arrow diagonal/></button></div>
+      <div className="format-column"><button onClick={event=>{briefTrigger.current=event.currentTarget;event.currentTarget.focus();openBrief('Постійна співпраця');}}><span>Постійна робота<br/>з артистом</span><p>Для гуртів, яким потрібна організаційна команда на постійній основі.</p><Arrow diagonal/></button>
       </div>
      </div>
      <SceneEntrance className="collaboration-flow" enabled={stageMotion.active}>
@@ -117,7 +118,7 @@ function App(){
    <section className="contact stage-section" id="contact" aria-labelledby="contact-title">
     <div className="contact-main"><h2 id="contact-title">Що ти<br/>задумав?</h2>
      <a className="contact-email contact-channel" href="mailto:yars.agency@gmail.com"><span className="channel-icon"><ContactIcon kind="email"/></span><span>yars.agency@gmail.com</span><Arrow diagonal/></a>
-     <div className="contact-actions"><a className="contact-channel instagram-channel" href="https://www.instagram.com/yar_agcy/" target="_blank" rel="noreferrer"><span className="channel-icon"><ContactIcon kind="instagram"/></span><span>Instagram <span className="channel-handle">@yar_agcy</span></span><Arrow diagonal/></a><button className="ticket brief-action" onClick={()=>openBrief()}><ContactIcon kind="brief"/><span>Заповнити анкету</span><Arrow diagonal/></button></div>
+     <div className="contact-actions"><a className="contact-channel instagram-channel" href="https://www.instagram.com/yar_agcy/" target="_blank" rel="noreferrer"><span className="channel-icon"><ContactIcon kind="instagram"/></span><span>Instagram <span className="channel-handle">@yar_agcy</span></span><Arrow diagonal/></a><button className="ticket brief-action" onClick={event=>{briefTrigger.current=event.currentTarget;event.currentTarget.focus();openBrief();}}><ContactIcon kind="brief"/><span>Заповнити анкету</span><Arrow diagonal/></button></div>
 
     </div>
     <div className="contact-brand"><MouthSignal/><span className="brand-question">How are you anyway?</span></div>
@@ -135,7 +136,7 @@ function App(){
   <dialog className="gallery-dialog" aria-label="Фотогалерея YAR" ref={galleryDialog} onClose={()=>setGallery(null)} onClick={e=>{if(e.target===e.currentTarget)e.currentTarget.close();}} onKeyDown={e=>{if(e.key==='ArrowRight')setGallery(value=>(value+1)%photos.length);if(e.key==='ArrowLeft')setGallery(value=>(value+photos.length-1)%photos.length);}}>
    {gallery!==null&&<><div className="gallery-toolbar"><span>{gallery+1} / {photos.length}</span><button onClick={()=>galleryDialog.current.close()} aria-label="Закрити фото">Закрити ×</button></div><Photo item={photos[gallery]}/><div className="gallery-bottom"><button aria-label="Попереднє фото" onClick={()=>setGallery(value=>(value+photos.length-1)%photos.length)}>←</button><p>{photos[gallery].title}</p><button aria-label="Наступне фото" onClick={()=>setGallery(value=>(value+1)%photos.length)}>→</button></div></>}
   </dialog>
-  <Suspense fallback={<div className="request-loading" role="status">Відкриваємо анкету…</div>}>{questionnaireReady&&<CooperationModal opened={brief!==null} onClose={()=>setBrief(null)} initialType={brief||'Концерт'} logo={<Logo/>} actionIcon={<Arrow/>}/>}</Suspense>
+  <Suspense fallback={<div className="request-loading" role="status">Відкриваємо анкету…</div>}>{questionnaireReady&&<CooperationModal opened={brief!==null} onClose={()=>setBrief(null)} onExit={()=>briefTrigger.current?.focus({preventScroll:true})} initialType={brief||'Концерт'} logo={<Logo/>} actionIcon={<Arrow/>}/>}</Suspense>
  </>;
 }
 createRoot(document.getElementById('root')).render(<App/>);

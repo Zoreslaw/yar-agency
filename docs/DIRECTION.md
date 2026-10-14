@@ -112,3 +112,17 @@ Questionnaires replace generic “brief” language. Different fields for concer
 Collaboration tape — 13 October 2026: the two formats are separated by an inline SVG strip of torn cream stage tape, vertical on desktop and horizontal below 650px. A single 550ms reveal follows the existing section entrance; reduced motion stays static and page visibility pauses it. Removed the decorative arrow above wuha. No new dependencies or external assets.
 
 Questionnaire refinement: react-hook-form supplies validation/focus handling rather than browser-only popups. Compact single-row header, one scrolling field area and anchored action. Requiredness limited to information needed to start a conversation; optional concert/tour details accept unknowns. Error messages placed near fields with aria-describedby/aria-invalid. Research: https://www.w3.org/WAI/tutorials/forms/validation/ ; https://www.w3.org/WAI/tutorials/forms/instructions/ ; official react-hook-form useForm/register documentation source at https://github.com/react-hook-form/react-hook-form and https://github.com/react-hook-form/documentation .
+
+## Questionnaire art direction — 14 October 2026
+
+The questionnaire now uses a cream working sheet and burgundy backstage rail, local Oswald display type, restrained torn edge and yellow actions. Original mark retained. Mobile becomes a full-screen sheet with a compact three-stage progress strip. Existing Mantine and React Hook Form remain; no dependencies or assets added.
+
+Three stages: identity and request format; required request description followed by optional format-specific details; review of relevant answers. The final screen explains downloading and manually attaching the file to email. Draft answers stay in mounted component memory only, including when the modal closes; page refresh clears them. No submission integration.
+
+Research applied: [W3C multi-page forms](https://www.w3.org/WAI/tutorials/forms/multi-page/) for logical stages and progress; [GOV.UK question pages](https://design-system.service.gov.uk/patterns/question-pages/) for focused questions and useful hints; [W3C modal pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) and [Mantine Modal](https://mantine.dev/core/modal/) for focus, Escape and responsive presentation. [Human Shapes / Marmoset](https://humanshapes.co/projects/marmoset) informs music/editorial composition, without copied artwork or interface. These are design references, not evidence of user-tested conversion improvements.
+
+User follow-up: remove the rail eyebrow “YAR / АНКЕТА”, the bottom rail slogan and the first-step retention note. Continue the burgundy spine through the desktop header behind a cream original mark; centre the header title over the cream working area. Mobile retains its compact header/progress arrangement.
+
+## Email notifications — 14 October 2026
+
+The final questionnaire action sends the relevant reviewed answers to the team through a real server integration. Preserve the approved three-step cream/burgundy design. Branded notification uses the original PNG mark, ink, burgundy, cream and yellow with email-safe table layout, inline styles and system fonts. HTML is independently escaped; a plain text alternative and applicant Reply-To are provided. Success means Resend accepted the message, not guaranteed inbox delivery. Do not introduce a visitor download or claim a database archive.
