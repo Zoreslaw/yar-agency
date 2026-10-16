@@ -3,6 +3,12 @@ import {mkdir,writeFile,copyFile,stat} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('../',import.meta.url));
+if (process.argv[2] === '--team') {
+ for (const [width,suffix] of [[1800,''],[800,'-800']]) {
+  await sharp(resolve(root,'source-assets/sofia-vika.jpg')).rotate().resize({width,withoutEnlargement:true}).webp({quality:84,effort:5}).toFile(resolve(root,`public/media/sofia-vika${suffix}.webp`));
+ }
+ process.exit(0);
+}
 if (process.argv[2] === '--mouth') {
  await sharp(resolve(root,'source-assets/mouth-no-logo-cutout.png')).resize({width:640,withoutEnlargement:true}).webp({quality:90,effort:6}).toFile(resolve(root,'public/media/mouth-no-logo.webp'));
  process.exit(0);

@@ -1,18 +1,19 @@
-/* Primary actions own the print; interface controls own only feedback and hit area. */
+/* Editorial actions have imprint/poster variants; utility controls stay quiet. */
 .yar-action {
  --action-fill:var(--cream); --action-ink:var(--red);
+ --action-angle:-.7deg; --action-shadow:5px; --action-shadow-ink:var(--ink); --action-hover-shadow-ink:var(--ink);
  --action-hover-fill:var(--yellow); --action-hover-ink:var(--ink);
  position:relative; isolation:isolate; display:inline-flex; align-items:center; justify-content:center;
  gap:10px; width:fit-content; max-width:100%; min-height:56px; padding:17px 26px;
  border:0; border-radius:0; background:transparent; color:var(--action-ink);
  font-family:'Manrope Variable',sans-serif; font-size:15px; font-weight:700;
  letter-spacing:-.035em; line-height:1.4; text-align:center; text-decoration:none;
- transform:rotate(-.7deg); transition:transform .12s ease,color .12s ease;
+ transform:rotate(var(--action-angle)); transition:transform .12s ease,color .12s ease;
 }
 .yar-action::before {
  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; background:var(--action-fill);
  clip-path:polygon(1% 4%,16% 2%,17% 4%,38% 1%,54% 3%,55% 1%,79% 2%,99% 0,98.8% 24%,100% 26%,99% 52%,99.5% 77%,98.8% 97%,83% 99%,82% 97%,62% 100%,43% 98%,42% 100%,21% 97%,0 99%,1% 78%,0 76%,1% 51%,0 30%);
- transition:background .12s ease;
+ transition:background .12s ease,box-shadow .12s ease;
 }
 .yar-action::after {
  content:""; position:absolute; pointer-events:none; left:12px; right:14px; top:9px; bottom:9px; opacity:.55;
@@ -21,18 +22,28 @@
 .yar-action--red {--action-fill:var(--red); --action-ink:var(--cream)}
 .yar-action--ink {--action-fill:var(--ink); --action-ink:var(--cream)}
 .yar-action--yellow {--action-fill:var(--yellow); --action-ink:var(--ink)}
+.yar-action--hover-yellow {--action-hover-fill:var(--yellow); --action-hover-ink:var(--ink)}
 .yar-action--hover-cream {--action-hover-fill:var(--cream); --action-hover-ink:var(--red)}
 .yar-action--hover-ink {--action-hover-fill:var(--ink); --action-hover-ink:var(--cream)}
 .yar-action--hover-red {--action-hover-fill:var(--red); --action-hover-ink:var(--cream)}
 .yar-action--large {font-size:clamp(19px,2vw,25px); min-height:72px; padding:22px 32px}
 .yar-action--small {min-height:48px; padding:13px 20px; font-size:13px}
 @media(hover:hover) and (pointer:fine) {
- .yar-action:hover:not(:disabled) {color:var(--action-hover-ink); text-decoration:none; transform:rotate(-.7deg) translateY(-1px)}
+ .yar-action:hover:not(:disabled) {color:var(--action-hover-ink); text-decoration:none; transform:rotate(var(--action-angle)) translateY(-1px)}
  .yar-action:hover:not(:disabled)::before {background:var(--action-hover-fill)}
 }
-.yar-action:active:not(:disabled) {transform:rotate(-.7deg) translateY(1px)}
+.yar-action:active:not(:disabled) {transform:rotate(var(--action-angle)) translateY(1px)}
 .yar-action:focus-visible {outline:2px solid var(--action-fill); outline-offset:5px}
 .yar-action:disabled {opacity:.6; cursor:default; transform:none}
+/* Poster: square printed block, uppercase lettering and a hard offset impression. */
+.yar-action--poster {--action-angle:0deg; letter-spacing:-.025em; text-transform:uppercase}
+.yar-action--poster.yar-action--regular {font-size:18px}
+.yar-action--poster::before {clip-path:none; box-shadow:var(--action-shadow) var(--action-shadow) 0 var(--action-shadow-ink)}
+.yar-action--poster::after {display:none}
+@media(hover:hover) and (pointer:fine) {
+ .yar-action--poster:hover:not(:disabled) {--action-shadow:3px; --action-shadow-ink:var(--action-hover-shadow-ink); transform:translate(2px,2px)}
+}
+.yar-action--poster:active:not(:disabled) {--action-shadow:1px; transform:translate(4px,4px)}
 .yar-action__label {position:relative; z-index:1; min-width:0; overflow-wrap:anywhere}
 .yar-action__spinner {width:16px; height:16px; flex-shrink:0; border:2px solid currentColor; border-right-color:transparent; border-radius:50%; animation:action-spin .8s linear infinite}
 @keyframes action-spin {to{transform:rotate(360deg)}}
@@ -60,6 +71,7 @@
 .header .menu-toggle.yar-control {display:none}
 @media(max-width:650px) {
  .yar-action {font-size:14px; padding:17px 22px}
+ .yar-action--poster.yar-action--regular {font-size:16px}
  .yar-action--large {font-size:20px; min-height:68px; padding:21px 24px}
  .yar-action--small {font-size:13px; min-height:48px; padding:13px 18px}
  .page-hero-action {margin-top:23px}
@@ -72,5 +84,6 @@
 @media(prefers-reduced-motion:reduce) {
  .yar-action,.yar-action:hover:not(:disabled),.yar-action:active:not(:disabled) {transform:none; transition:none}
  .yar-action::before,.yar-control {transition:none}
+ .yar-action--poster:hover:not(:disabled),.yar-action--poster:active:not(:disabled) {--action-shadow:5px; transform:none}
  .yar-action__spinner {animation:none}
 }

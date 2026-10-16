@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {ImprintAction, UtilityButton} from './components/Buttons.jsx';
+import {ActionButton, UtilityButton} from './components/Buttons.jsx';
 import {FormProvider, useForm, useFormContext, useWatch, useController} from 'react-hook-form';
 import {TextInput, Textarea, Select, MultiSelect, NumberInput, SegmentedControl} from '@mantine/core';
 import {DatePickerInput} from '@mantine/dates';
@@ -103,6 +103,7 @@ export function CooperationForm({initialType, active}) {
   <div className="request-workspace"><div className="request-scroll" ref={scroll}>
    <div className="step-intro"><p className="step-kicker">{saved?'АНКЕТА ГОТОВА':`КРОК ${step+1} ІЗ 3 / ${steps[step].toUpperCase()}`}</p><h2 tabIndex={-1} ref={heading}>{saved?'Дякуємо за звернення.':titles[step]}</h2><p>{saved?'Анкету надіслано команді YAR. Для відповіді використаємо email, який ти вказав у формі.':step===0?'Як тебе знайти та з чим можемо допомогти?':step===1?'Поділись тим, що вже знаєш. Необов’язкові деталі можна залишити на потім.':'Переглянь відповіді перед надсиланням. До будь-якого кроку можна повернутися.'}</p></div>
    <div hidden={step!==0||saved}><TypePicker/>
+   <p className="request-privacy-intro">Відповіді потрібні, щоб розглянути твій запит і зв’язатися з тобою. <a href="/privacy.html" target="_blank" rel="noreferrer">Про обробку даних · проєкт політики<span className="sr-only"> (нова вкладка)</span></a>.</p>
    <p className="required-guide"><span aria-hidden="true">*</span> Обов’язкові поля</p>
    <fieldset className="request-section"><legend>Про вас</legend>
     <Field name="name" required maxLength={100} autoComplete="organization"/>
@@ -131,6 +132,6 @@ export function CooperationForm({initialType, active}) {
    {saved&&<div className="request-success" role="status"><span aria-hidden="true">↗</span><strong>Залишаймося на зв’язку.</strong><p>Якщо хочеш щось додати до відповідей, напиши нам.</p><a href="mailto:yars.agency@gmail.com">Написати YAR ↗</a></div>}
    {sendError&&<p ref={errorNotice} tabIndex={-1} className="request-send-error" role="alert">{sendError}</p>}
   </div>
-  <div className="request-footer"><div className="request-footer-note">{saved?'':step===0?'':step===1?'* Обов’язкове поле. Решта — за бажанням.':'Натискаючи «Надіслати», ти передаєш відповіді команді YAR для обговорення співпраці.'}</div><div className="request-actions">{!saved&&step>0&&<UtilityButton disabled={sending} className="request-back" onClick={()=>{setSendError('');goTo(step-1);}}>Назад</UtilityButton>}{!saved&&<ImprintAction type="submit" tone="red" size="small" busy={sending}>{step===2?'Надіслати анкету':'Далі'}</ImprintAction>}</div></div>
+  <div className="request-footer"><div className="request-footer-note">{saved?'':step===0?'':step===1?'* Обов’язкове поле. Решта — за бажанням.':<>Відповіді надійдуть команді YAR через сервіс Resend для обговорення співпраці. <a href="/privacy.html" target="_blank" rel="noreferrer">Політика конфіденційності · проєкт<span className="sr-only"> (нова вкладка)</span></a>.</>}</div><div className="request-actions">{!saved&&step>0&&<UtilityButton disabled={sending} className="request-back" onClick={()=>{setSendError('');goTo(step-1);}}>Назад</UtilityButton>}{!saved&&<ActionButton type="submit" tone="red" size="small" busy={sending}>{step===2?'Надіслати анкету':'Далі'}</ActionButton>}</div></div>
  </div></form></FormProvider>;
 }

@@ -108,4 +108,8 @@
 @media(max-width:650px){.request-actions{margin-left:0}}
 
 .request-trap{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+.request-privacy-intro{font-size:12px;line-height:1.8;color:#535366;margin:0 0 22px;max-width:460px}
+.request-privacy-intro a,.request-footer-note a{color:var(--red);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.request-privacy-intro a:focus-visible,.request-footer-note a:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+@media(max-width:650px){.request-footer-note{font-size:11px}}
 .request-send-error{padding:16px;border:1px solid var(--red);font-size:13px;line-height:1.7;color:var(--red);overflow-wrap:anywhere}

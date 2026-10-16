@@ -1,38 +1,82 @@
-/* Three service groups on one brand surface. Photography and copy never overlap. */
-.service-stories{background:var(--red);color:var(--cream);padding:12px 7% 72px;overflow:clip}
-.service-story{padding:66px 0;scroll-margin-top:100px}
-.story-layout{max-width:1440px;margin:auto;display:grid;grid-template-columns:1.12fr 1fr;align-items:center;column-gap:9%;row-gap:32px}
-.story-copy{grid-column:2;grid-row:1;min-width:0}
-.story-visual{grid-column:1;grid-row:1;min-width:0;padding:8px 6px}
-.service-stories h3{font-family:var(--display-font);font-weight:500;font-size:clamp(42px,4.6vw,68px);letter-spacing:-.015em;line-height:1.08;margin:0 0 25px;color:var(--cream);scroll-margin-top:120px}
+/* A cream sequence of three working scenes: route, stage, contact sheet. */
+.service-stories{background:var(--cream);color:var(--ink);padding:0 7% 68px;overflow:clip}
+.stories-navigation{max-width:1440px;margin:auto;display:flex;gap:36px;justify-content:space-between;padding:28px 0;border-bottom:1px solid #991a1e40}
+.stories-navigation a{display:flex;align-items:center;gap:20px;color:var(--red);font-size:13px;font-weight:650;min-height:44px;text-decoration:none}
+.stories-navigation a span{font-size:24px;transition:transform .2s}
+.stories-navigation a:hover span{transform:translate(3px,3px)}
+.stories-navigation a:focus-visible{outline:2px solid var(--red);outline-offset:5px}
+.service-story{position:relative;padding:68px 0;scroll-margin-top:100px}
+.service-story+.service-story:before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);opacity:.45;clip-path:polygon(0 35%,17% 0,31% 45%,53% 20%,75% 60%,100% 15%,100% 70%,75% 100%,53% 70%,31% 90%,17% 55%,0 100%)}
+.story-layout{max-width:1440px;margin:auto;display:grid;grid-template-columns:1.15fr 1fr;align-items:center;column-gap:9%;row-gap:32px}
+.story-copy{grid-column:2;grid-row:1;min-width:0;position:relative;z-index:1}
+.story-visual{grid-column:1;grid-row:1;min-width:0;padding:0 5px}
+.service-stories h3{font-family:var(--display-font);font-weight:500;font-size:clamp(42px,4.6vw,68px);letter-spacing:-.015em;line-height:1.08;margin:0 0 25px;color:var(--red);scroll-margin-top:120px}
 .story-lead{font-size:16px;line-height:1.75;max-width:480px;margin:0 0 21px}
 .story-tasks{list-style:none;padding:0;margin:0;max-width:480px;display:grid;gap:12px}
-.story-tasks li{position:relative;padding-left:20px;font-size:14px;line-height:1.75}
-.story-tasks li:before{content:'';position:absolute;left:0;top:.75em;width:8px;height:2px;background:var(--yellow)}
-.story-photo{display:block;width:100%;padding:8px 8px 18px;background:var(--cream);transform:rotate(-1.5deg);box-shadow:5px 8px 0 #1d223d28;cursor:zoom-in;transition:transform .25s ease}
+.story-tasks li{position:relative;padding-left:25px;font-size:14px;line-height:1.75}
+/* A small thumbtack holds each note; these are list markers, not controls. */
+.story-tasks li:before{content:'';position:absolute;z-index:1;left:0;top:.43em;width:10px;height:10px;border-radius:50%;background:var(--red);box-shadow:inset 1px 1px 0 #fffbd470,1px 1px 0 #1d223d24}
+.story-tasks li:after{content:'';position:absolute;left:5px;top:calc(.43em + 8px);width:1.5px;height:7px;background:var(--ink);transform:rotate(24deg);transform-origin:top}
+.story-art{position:relative;isolation:isolate;width:100%}
+.scene-piece{position:absolute}
+.scene-piece:focus-within{z-index:5}
+.story-photo{display:block;width:100%;padding:8px 8px 18px;background:var(--cream);box-shadow:4px 6px 0 #1d223d24;cursor:zoom-in;transition:translate .2s;position:relative}
 .story-photo img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;filter:grayscale(1) sepia(.18) contrast(1.12) brightness(.94)}
-.story-photo:focus-visible{outline:3px solid var(--yellow);outline-offset:6px}
-.story-production .story-layout{grid-template-columns:1fr 1.12fr}
+.story-photo:focus-visible{outline:3px solid var(--red);outline-offset:6px}
+.scene-tape{position:absolute;z-index:3;background:var(--yellow);width:90px;height:26px;clip-path:polygon(0 6%,10% 0,89% 8%,100% 0,97% 92%,90% 100%,9% 91%,0 100%);pointer-events:none;opacity:.92}
+/* An abstract route, without invented locations, tour dates or booking documents. */
+.art-route{aspect-ratio:1.2}
+.route-drawing{position:absolute;inset:0;width:100%;height:100%;stroke:var(--red);stroke-width:3;pointer-events:none}
+.route-drawing circle{fill:var(--cream)}
+.route-backing{position:absolute;inset:8% 6% 24% 11%;background:var(--red);transform:rotate(2deg);clip-path:polygon(0 0,99% 2%,100% 98%,1% 100%)}
+.route-print{inset:5% 8% auto 8%}
+.route-print .story-photo{transform:rotate(-2deg)}
+.route-print img{aspect-ratio:1.5}
+/* Concert photography carries this scene without a simulated working document. */
+.story-production .story-layout{grid-template-columns:1fr 1.22fr;column-gap:8%}
 .story-production .story-copy{grid-column:1}
 .story-production .story-visual{grid-column:2}
-.story-production .story-photo{transform:rotate(1.5deg)}
-.stories-outro{max-width:1440px;margin:12px auto 0;padding-top:30px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+.art-production{aspect-ratio:1.33}
+.production-mount{position:absolute;inset:5% 0 0 4%;background:var(--ink);transform:rotate(1deg)}
+.production-print{inset:2% 3% auto 0}
+.production-print .story-photo{transform:rotate(-1.5deg);padding:8px 8px 18px;box-shadow:none;background:var(--cream)}
+.production-print img{aspect-ratio:1.45;filter:grayscale(1) sepia(.2) contrast(1.1)}
+/* Photographic formats communicate promo without a fabricated artist poster. */
+.art-promo{aspect-ratio:1.04}
+.promo-backing{position:absolute;inset:4% 1% 3% 0;background:var(--red);transform:rotate(-2deg);padding:10px;display:flex;justify-content:space-around;align-items:flex-end}
+.promo-backing span{background:var(--cream);width:16px;height:6px;opacity:.7}
+.promo-main{left:5%;top:0;width:54%;z-index:2}
+.promo-main .story-photo{transform:rotate(-3deg);padding:7px 7px 19px}
+.promo-main img{aspect-ratio:.72;object-position:52% 50%}
+.promo-small{right:5%;width:41%}
+.promo-small .story-photo{transform:rotate(1.5deg);padding:5px 5px 12px}
+.promo-small img{aspect-ratio:1.2}
+.promo-small--top{top:9%}
+.promo-small--bottom{bottom:9%}
+.promo-small--bottom .story-photo{transform:rotate(-1deg)}
+.promo-tape{left:21%;top:-1%;transform:rotate(-8deg);width:70px}
+.stories-outro{max-width:1440px;margin:12px auto 0;padding-top:30px;border-top:1px solid #991a1e40;display:flex;align-items:center;justify-content:space-between;gap:30px}
 .stories-outro p{font-size:16px;line-height:1.75;margin:0}
-@media(hover:hover) and (pointer:fine){.story-photo:hover{transform:rotate(-1.5deg) translateY(-3px)}.story-production .story-photo:hover{transform:rotate(1.5deg) translateY(-3px)}}
+@media(hover:hover) and (pointer:fine){.story-photo:hover{translate:0 -4px}}
 @media(min-width:1700px){.service-stories{padding-inline:max(7%,calc((100vw - 1440px)/2))}}
-@media(max-width:1000px){.service-stories{padding-inline:6%}.story-layout{column-gap:7%}.service-stories h3{font-size:44px}.story-lead{font-size:15px}.story-tasks li{font-size:13px}.service-story{padding-block:48px}}
+@media(max-width:1000px){.service-stories{padding-inline:6%}.story-layout{column-gap:7%}.service-stories h3{font-size:44px}.story-lead{font-size:15px}.story-tasks li{font-size:13px}.service-story{padding-block:48px}.stories-navigation{gap:20px}.stories-navigation a{font-size:12px;gap:10px}}
 @media(max-width:700px){
  .service-stories{padding:0 6% 48px}
- .service-story{padding:40px 0}
- .story-layout,.story-production .story-layout{grid-template-columns:1fr;gap:25px}
+ .stories-navigation{gap:0;flex-direction:column;padding:16px 0}
+ .stories-navigation a{justify-content:space-between;font-size:13px}
+ .stories-navigation a span{font-size:20px}
+ .service-story{padding:38px 0}
+ .story-layout,.story-production .story-layout{grid-template-columns:1fr;gap:30px}
  .story-copy,.story-production .story-copy{grid-column:1;grid-row:1}
- .story-visual,.story-production .story-visual{grid-column:1;grid-row:2;padding:6px 4px}
+ .story-visual,.story-production .story-visual{grid-column:1;grid-row:2;padding:8px 4px 4px;max-width:500px;width:100%;justify-self:center}
  .service-stories h3{font-size:clamp(38px,9vw,55px);line-height:1.12;margin-bottom:22px}
  .story-lead{font-size:15px;margin-bottom:18px}
- .story-tasks li{font-size:13px;padding-left:17px}
+ .story-tasks li{font-size:13px;padding-left:23px}
  .story-photo{padding:6px 6px 14px}
- .stories-outro{padding-top:20px;flex-direction:column;align-items:flex-start;gap:22px;margin-top:0}
+ .scene-tape{height:20px;width:65px}
+
+ .stories-outro{padding-top:24px;flex-direction:column;align-items:flex-start;gap:22px;margin-top:0}
  .stories-outro p{font-size:15px}
  .stories-outro .yar-action{max-width:100%}
 }
-@media(prefers-reduced-motion:reduce){.story-photo{transition:none}.story-photo:hover{transform:rotate(-1.5deg)}.story-production .story-photo:hover{transform:rotate(1.5deg)}}
+@media(prefers-reduced-motion:reduce){.story-photo,.stories-navigation a span{transition:none}.story-photo:hover{translate:none}.stories-navigation a:hover span{transform:none}}

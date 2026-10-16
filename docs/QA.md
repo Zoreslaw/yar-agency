@@ -185,3 +185,38 @@ The feature branch’s three-scenario section is excluded from main pending sepa
 
 ## Service redesign preview branch — 14 October 2026
 feature/service-stories reapplies the three-scene section on top of the updated main branch. At 320px there is no horizontal overflow and no text/photo intersection; at 390px headings and task lists fit. Desktop and mobile compositions inspected. Existing gallery opens the expected supplied wuha image; Escape restores focus. The conversation CTA opens the existing questionnaire with Other selected. Reduced-motion setting remains respected by the shared entrance system. Main is not changed by this branch commit.
+
+## Palette A — 15 October 2026
+Changed service surface/text/list colours and selected the existing red ImprintAction tone. npm run check and npm run build passed (existing ignored use-client bundler warnings). Browser access to the local tab was rejected by URL policy; desktop/mobile visual and interaction rechecks for this change remain unverified. Prior ignored full-page A/B/C captures are design references, not verification of this source change.
+
+## Final service rework — 15 October 2026
+Supersedes the blocked palette-only check above: user reopened the local page and browser access resumed. Visually inspected all three scenes at 1440 and 320; measured 390 as well. No horizontal document overflow or overflowing service text. Final production photograph separately inspected desktop/mobile after removing both rejected diagram and paper note. Gallery trigger opens stage.webp; Escape closes. Discussion CTA opens questionnaire; Escape returns focus to that CTA. Normal entrance observed with 8 active booking animation tracks; reduced motion stops all service tracks. Browser error log empty. npm run check, npm run build, npm run standalone and git diff --check pass; usual ignored dependency use-client directives in build output. Captures in ignored qa/service-rework.
+## Footer and privacy — 15 October 2026
+
+- Actual browser: main contact/footer at 1440, 390 and 320px; policy at desktop (1280) and 320px. No horizontal document overflow or clipped contact/link text observed. Policy heading and long prose fit at 320px. Screenshots in ignored qa/footer-privacy.
+- Confirmed email/tel/Instagram targets and policy links. Policy opens from final questionnaire step in a separate tab; review answers remained mounted in the original tab. No real enquiry submitted.
+- Stepped through questionnaire with QA-only inputs to review; mobile privacy footer is 11px, keyboard focus visible, Escape closes and returns focus to contact CTA. Policy contents navigation checked. Existing motion/reduced-motion/visibility logic unchanged.
+- npm run check, npm run build and npm run standalone passed; build retains existing Mantine/Motion use-client directive warnings. Final build rerun after mobile text adjustment. New static policy included in dist; dist and QA files are not committed.
+- Remaining: actual candidate-deployment cookies/storage and provider configuration audit, real delivery test if requested, user/controller confirmation of policy facts. Draft notice and noindex intentionally retained. No deployment/push.
+
+Footer icon restoration — 15 October 2026: actual browser at 1440/390/320, no horizontal overflow or clipped contact labels. Original mail/Instagram icons and arrows restored, matching phone added, desktop icon frames and mobile compact treatment inspected. Check/build/standalone passed. Captures: ignored qa/footer-privacy/icons-*.jpg.
+
+Footer simplification — 16 October 2026: removed the two user-rejected captions (YAR Agency · Польща and Музика. Люди. Події.). Desktop logo aligns to the vertical centre of the navigation/contact columns; policy row remains right-aligned on desktop. Actual browser 1440/320 checked: aligned centres, captions absent, no horizontal overflow or clipped footer links. Check/build/standalone passed. Screenshot: ignored qa/footer-privacy/logo-centred.jpg. Local only.
+
+Social/privacy confirmation — 16 October 2026: actual browser contact/footer at 1440/320 and policy at 1440/320. Confirmed all three supplied social hrefs, external-tab semantics, decorative icons, no clipped links or horizontal overflow. Facebook share URL is user-supplied; web tool could not resolve it due to throttling, no canonical page URL claimed. Policy shows Viktoriia, the site email, email-only working storage and adopted six-month rule. Check/build/standalone passed; no submission, automatic deletion, push or deployment. Captures in ignored qa/footer-privacy.
+
+
+## Collaboration columns — 16 October 2026
+Actual in-app browser checked at 1440×1000, 390×900 and 320×850. Desktop: D016 sits inside the left task/event column; wuha inside the right ongoing-work column, with aligned media and copy. Mobile DOM and visual order: task/event description → D016 → ongoing-work description → wuha. No document horizontal overflow or clipped heading/body/button text at checked widths. Gallery opens at image 1/7; Escape closes and returns focus to its trigger. npm run check, build and standalone passed; existing dependency use-client bundle warnings remain. Screenshot qa/collaboration/two-columns.png is ignored by Git. No push or deployment.
+
+## Poster button — 16 October 2026
+Actual browser at 1440×900 and 320×800: hero poster has a straight rectangular surface, uppercase Manrope, offset impression, full visible label and no horizontal document overflow at 320. Actual hover uses cream #FFFBD4 with red #991A1E text and red 3px offset. Hero link reaches #contact; questionnaire opens and Escape closes; focus-visible checked. Other actions retain the default imprint variant through the shared component. npm run check/build/standalone and whitespace checks pass. No submission or deployment. Captures: ignored qa/poster-button/desktop.png, desktop-hover.png and mobile-320.png.
+
+
+Collaboration copy/photo follow-up — 16 October 2026: verified 1440 and 320 browser layouts after removing both captions and the separate wuha gallery button. No horizontal overflow or clipped collaboration text. D016 uses people.webp; clicking opens photo 3/7, Escape closes. Both mounted photos retained. Check/build/standalone and diff whitespace checks passed. Screenshot qa/collaboration/photos-desktop.png is ignored.
+
+
+## Team photograph — 16 October 2026
+npm run check, npm run build and npm run standalone passed; existing dependency use-client warnings remain. Actual browser at 1440×950 and 320×900: new responsive photograph loaded, full 4:3 composition visible, team text/action fit and document has no horizontal overflow. Stock-reference caption absent. Screenshots: ignored qa/team-photo/desktop.png and mobile.png. No interaction logic changed.
+
+Hero yellow hover — 16 October 2026: real pointer hover retains #FFCC00 fill and #1D223D label/shadow. Offset compresses 5px→3px with 2px translation. Desktop 1440 and mobile 320 inspected, full label visible, document width 320; action navigates to #contact. Check/build/standalone pass. Screenshot ignored: qa/poster-button/yellow-hover.png.

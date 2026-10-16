@@ -1,0 +1,14 @@
+/* Each format owns its example, preserving the reading order on mobile. */
+.collaboration-formats .format-column{min-width:0;display:grid;grid-template-rows:auto minmax(76px,auto) 1fr;align-content:start}
+.format-example{margin-top:32px;min-width:0}
+.collaboration .format-example .collaboration-example{display:grid;grid-template-columns:minmax(0,1fr);gap:32px;margin:0;padding:0;align-items:start}
+.format-example .example-copy{min-width:0}
+.format-example .example-copy h4{font-size:clamp(30px,3.2vw,46px)}
+.format-example .collaboration-example .example-photo{width:calc(100% - 12px);margin:0 6px;padding:8px 8px 22px;aspect-ratio:3/2}
+.format-example .collaboration-example .example-photo img{height:100%;aspect-ratio:auto;object-fit:cover}
+@media(max-width:650px){
+ .collaboration-formats .format-column{display:block}
+ .format-example{margin-top:36px}
+ .collaboration .format-example .collaboration-example{gap:30px}
+ .format-example .example-copy h4{font-size:35px}
+}

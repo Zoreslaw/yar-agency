@@ -99,3 +99,37 @@ Collaboration hover correction — 14 October 2026: removed the legacy .format-c
 
 ## Service section — 14 October 2026
 Main retains the six existing service rows. The three scenario redesign lives on feature/service-stories and is intentionally separate. Colors, shared buttons, questionnaire improvements and logo-free Mouth are in main.
+
+## Palette A selected — 15 October 2026
+On feature/service-stories, user chose A from the full-page comparison. Service stories now have a cream reading surface, ink body, burgundy headings/list marks, and a red discussion CTA using existing contextual hover/focus. Burgundy introduction/contacts and ink collaboration preserve the selected distribution. npm run check and npm run build passed. Browser recheck was blocked by browser URL policy; no workaround attempted. Local changes only.
+
+## Footer and privacy — 15 October 2026
+Branch feature/footer-privacy preserves pre-existing service-section work without editing it. Local contact/footer redesign in main.jsx and scoped footer.css; confirmed phone +48 723 655 123 alongside existing email/Instagram. Questionnaire has privacy links before input and sending, with readable mobile footer text; sending logic unchanged. public/privacy.html is a standalone noindex draft with original viewport-cropped logo, explicit missing controller/access/legal-basis/retention/provider fields and a cookies section. Six-month unconverted-enquiry retention is still a proposal, not an implemented deletion schedule. No cookie banner, speculative socials or copyright claim. Completion requirements and verified social research are in docs/FOOTER-PRIVACY.md. No push/deploy. Browser QA covered main page 1440/390/320 and policy desktop/320, including form steps, separate-tab policy link, keyboard focus/Escape. New captures are ignored under qa/footer-privacy.
+
+## Service scene rework — 15 October 2026
+Local work on feature/service-stories: ServiceStories owns content; ServiceScene provides independent text/artwork entrance scopes; ServiceArtwork composes shared PhotoPrint gallery triggers into route/concert/contact-sheet visuals. Cream service surface, burgundy headings and thumbtack markers. Removed rejected stage diagram and pseudo-working note. Original photos and gallery indices retained; no new dependency or raster asset. Desktop 1440 and mobile 320/390 verified, no horizontal document overflow or text clipping; gallery expected image, questionnaire open/Escape/focus return, normal entrance animation and reduced-motion cleanup checked. npm run check/build/standalone pass. Captures are ignored under qa/service-rework. Not committed or pushed.
+
+Footer icon correction — 15 October 2026: user rejected removal of the contact icons. Restored original email/Instagram SVGs, contact icon frames with hover/focus feedback and diagonal arrows; added a matching phone SVG in contact and footer links. Mobile footer arrows hide as before to retain compact labels. Contact hierarchy/privacy work unchanged. Browser inspected 1440/390/320; no document overflow or clipped contact labels. Check/build/standalone passed; local only.
+
+Footer simplification — 16 October 2026: removed the two user-rejected captions (YAR Agency · Польща and Музика. Люди. Події.). Desktop logo aligns to the vertical centre of the navigation/contact columns; policy row remains right-aligned on desktop. Actual browser 1440/320 checked: aligned centres, captions absent, no horizontal overflow or clipped footer links. Check/build/standalone passed. Screenshot: ignored qa/footer-privacy/logo-centred.jpg. Local only.
+
+Social/privacy confirmation — 16 October 2026: user supplied Instagram, Facebook share URL and TikTok @yar.agency. Added Facebook/TikTok line icons and links in contacts/footer using one shared social list, without tracking query parameters. User named Шкодюк Вікторія Юріївна / Viktoriia Shkodiuk as responsible for reading/storage/deletion, confirmed email-only working storage (no tables/folders/CRM), and adopted six months after last substantive contact for unconverted enquiries. Policy and checklist updated; deletion remains manual, no recipient configuration or server sending logic changed. JDG registered name/address/controller details and provider review still pending. Local only.
+
+
+## Integrated collaboration examples — 16 October 2026
+main.jsx nests each example in its corresponding format column, with independent SceneEntrance scopes. Scoped collaboration-examples.css stacks image/text within each desktop column and preserves complete format/example order on mobile. D016 belongs to specific tasks/concert organization; wuha copy now describes user-confirmed ongoing management (page, content, festival applications, label meeting). All seven gallery images retained. D016 has a typographic treatment pending actual imagery. Pre-existing service/footer/privacy edits preserved. Check/build/standalone pass; browser 1440/390/320 verified, no clipping/overflow; gallery opens and Escape restores focus. Local only.
+
+## Poster button variant — 16 October 2026
+Branch feature/poster-button-variant preserves the existing uncommitted footer/service/privacy work. Shared ActionButton in src/components/Buttons.jsx now selects variant="imprint" (default) or "poster". All consumers migrated from ImprintAction; only the hero opts into poster, using its established red→cream colour pairing with a contrasting hard offset. Existing form pending/disabled/submit and link semantics retained. Browser inspected 1440 and 320, actual hover, hero contact navigation, questionnaire open/Escape and keyboard focus. Check/build/standalone passed. Captures in ignored qa/poster-button. No push/deploy.
+
+
+Collaboration follow-up — 16 October 2026: removed artist/format eyebrow captions and separate “Фото концертів wuha” action. Revised both descriptions around visitor needs, scope and actual examples. D016 column now uses user-selected gallery photo 3 (people.webp), opening gallery index 2; wuha retains vocal.webp at index 0. Removed unused typographic-print/caption CSS. Desktop 1440 and mobile 320 checked; no overflow/clipping, photo opens at 3/7 and Escape closes. Check/build/standalone passed. Latest screenshot: qa/collaboration/photos-desktop.png (ignored). Local only.
+
+
+## Genuine team photograph — 16 October 2026
+Branch feature/team-photo preserves all pre-existing uncommitted work. Team mirror now uses the genuine user-supplied Sofia/Vika photograph, responsive 1800/800 WebP files generated by scripts/optimize-assets.mjs --team from an unchanged ignored original. Natural 4:3 frame; obsolete stock caption removed and alt updated. Earlier missing-team-photo notes are superseded. Check/build/standalone pass (existing dependency use-client warnings). Actual browser inspected at 1440 and 320: full photograph, readable copy/action, no horizontal document overflow. Captures ignored under qa/team-photo. No commit, push or deployment.
+
+Hero yellow action — 16 October 2026: feature/hero-yellow-action preserves existing local work. Hero poster now tone="yellow" hoverTone="yellow" with stable ink text/shadow. Hover changes only position/offset. Browser verified resting/hover RGB values, 1440 and 320 layout and #contact navigation. Check/build/standalone and diff whitespace pass. Local only.
+
+
+Footer alignment — 16 October 2026: user requested the YAR mark at the start of the footer columns. footer-identity now uses align-self:start. This supersedes the earlier vertical-centering choice.

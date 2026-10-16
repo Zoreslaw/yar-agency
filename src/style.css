@@ -458,10 +458,10 @@ html,body{overscroll-behavior-y:none;background:var(--ink)}
 .collaboration-example .example-photo img{filter:grayscale(1) sepia(.18) contrast(1.12) brightness(.94)}
 /* A compact mirror, framed around the people rather than empty studio space. */
 .mirror-portrait{width:100%;max-width:540px;margin-inline:auto}
-.dressing-mirror>img{aspect-ratio:6/5;object-position:50% 72%}
+.dressing-mirror>img{aspect-ratio:4/3;object-position:center}
 @media(max-width:650px){
  .mirror-portrait{width:calc(100% - 14px);max-width:420px;margin-inline:7px}
- .dressing-mirror>img{aspect-ratio:6/5;object-position:50% 72%}
+ .dressing-mirror>img{aspect-ratio:4/3;object-position:center}
 }
 
 .agency-ticker{padding-block:clamp(18px,2vw,28px);background:var(--red);color:var(--cream);border-color:#fffbd43b}

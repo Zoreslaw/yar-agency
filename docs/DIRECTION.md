@@ -148,3 +148,36 @@ User asked to reconsider button/hover colours in each location. The hero keeps b
 
 ## Service redesign branch — 14 October 2026
 The three scenario redesign is under review on a separate feature branch. Main retains the prior six service rows. The burgundy page palette, button system and questionnaire copy remain part of main.
+
+## Selected whole-page palette — 15 October 2026
+User selected A from the current full-page A/B/C comparison. On feature/service-stories, the three service stories now use cream with ink body copy and burgundy headings/list marks. The discussion action uses the shared red tone with ink hover. The introduction and contacts remain burgundy, collaboration ink. This is a palette choice for the existing composition.
+
+## Contact hierarchy and privacy draft — 15 October 2026
+On feature/footer-privacy, the contact invitation now gives the questionnaire one primary printed action, followed by direct email, confirmed phone and Instagram links. Cream footer uses three clear areas (original mark, section navigation, direct contacts), with a separate policy row. Mobile keeps the mark/introduction above two compact columns. Original mouth treatment, brand palette and media remain. No speculative social links, donation link or unconfirmed copyright holder. A separate noindex Ukrainian privacy draft and questionnaire links provide a reviewable document while controller/access/retention facts remain pending. Full checklist in FOOTER-PRIVACY.md. Do not publish the unfinished draft as an approved policy.
+
+## Service scene rework — 15 October 2026
+Retain palette A and three service directions. Use a visible route around the booking photograph, a clean concert photograph on an ink mount, and a burgundy-backed contact sheet of supplied photos for promo. The user rejected both the illustrative stage plot and the simulated backstage note: neither should return as filler. Do not add fabricated receipts, dates, checklists or pseudo-documentary labels. Thumbtack list markers were explicitly requested. Each composition has a bounded area separate from body copy, with thin burgundy section seams and direct section links. Text and artwork animate independently once in view, including on mobile; static and reduced-motion compositions are complete. Existing Motion and shared button components are sufficient.
+
+Footer icon correction — 15 October 2026: retain the original email/Instagram icons and directional arrows within the revised contact hierarchy. Phone uses a matching line icon. Framed contact icons retain yellow hover/focus response; footer uses compact unframed icons.
+
+Footer simplification — 16 October 2026: removed the two user-rejected captions (YAR Agency · Польща and Музика. Люди. Події.). Desktop logo aligns to the vertical centre of the navigation/contact columns; policy row remains right-aligned on desktop. Actual browser 1440/320 checked: aligned centres, captions absent, no horizontal overflow or clipped footer links. Check/build/standalone passed. Screenshot: ignored qa/footer-privacy/logo-centred.jpg. Local only.
+
+Social links — 16 October 2026: retain icons for each user-confirmed Instagram/Facebook/TikTok destination. New Facebook/TikTok links follow existing framed contact rows and compact footer rows; social row typography is consistent. Preserve desktop logo centring and removed captions. Privacy remains a clearly marked draft, with confirmed responsible person and retention separated from unknown registration/provider facts.
+
+
+## Collaboration examples — 16 October 2026
+Each collaboration format contains its own example: left column is a specific task/event with D016; right column is continuing artist management with wuha. Mobile reads the complete D016 format/example before the complete wuha format/example. Supersedes the detached full-width example rows. D016 uses a plain typographic name composition until genuine artist imagery is supplied; existing photos remain attributed to wuha. User clarified wuha management includes the artist page, content, festival applications and a label meeting. No results or dates invented.
+
+## Poster action variant — 16 October 2026
+User requested retaining both the imprint and the earlier poster prototype. ActionButton replaces the narrowly named ImprintAction and accepts variant="imprint" (default) or variant="poster", independently of tone, hoverTone and size. The hero uses the poster: straight burgundy rectangle, uppercase Manrope, hard cream offset impression; cream/burgundy hover compresses the offset with a short 2px push. It suits the full-width concert-poster composition. Existing collage/photographic and questionnaire actions retain the imprint; utility controls remain plain. Reduced motion disables the movement and offset compression.
+
+
+Collaboration copy and imagery — 16 October 2026: removed both small artist/format captions at user request. Copy now leads with visitor fit, delegable scope and individual terms, then concrete D016/wuha examples. Replaced generic wuha headline with “Команда для вашого гурту.” User then selected gallery photo 3 (people / Перед подією) for the D016 column, replacing the typographic composition, and removed the separate wuha gallery button. Both photographs remain clickable. This placement is user-directed; it does not establish the identities of the people shown.
+
+
+Team photograph — 16 October 2026: replace the temporary stock reference with the user-supplied genuine Sofia/Vika umbrella photograph. Keep the existing mirror and lamps; use natural 4:3 proportions to preserve the whole frame on desktop and mobile. Remove the obsolete reference caption. No other layout/content revision.
+
+Hero action refinement — 16 October 2026: user approved a permanently yellow poster with ink text. Hover retains fill, text and ink shadow colours, only pressing 2px into the offset. Remove the hero-specific cream/red shadow changes. Explicit hoverTone="yellow" is supported by the shared component CSS.
+
+
+Footer alignment — 16 October 2026: user requested the YAR mark at the start of the footer columns. footer-identity now uses align-self:start. This supersedes the earlier vertical-centering choice.
