@@ -98,7 +98,7 @@ function App(){
      <SceneEntrance className="format-example" enabled={stageMotion.active}>
      <aside className="collaboration-example" id="moments" aria-labelledby="artist-name">
       <button className="example-photo" data-motion="photo" data-delay="0.2" onClick={()=>setGallery(0)} aria-label="Відкрити фотографії співпраці з wuha"><Photo item={photos[0]} sizes="(max-width: 650px) 88vw, 42vw"/></button>
-      <div className="example-copy" data-motion="text" data-delay="0.15"><h4 id="artist-name">Команда для<br/>вашого гурту.</h4><p>Стаємо менеджерами вашого гурту: беремо на себе узгоджені задачі й разом плануємо наступні кроки.</p><p>Так працюємо з <strong>wuha</strong>: ведемо сторінку й контент, подаємо заявки на фестивалі. Разом із гуртом також провели зустріч із лейблом.</p></div>
+      <div className="example-copy" data-motion="text" data-delay="0.15"><h4 id="artist-name">Команда для<br/>вашого гурту.</h4><p>Стаємо менеджерами вашого гурту: беремо на себе узгоджені задачі й разом плануємо наступні кроки.</p><p>Так працюємо з <strong>wuha</strong>: ведемо сторінку й контент, подаємо заявки на фестивалі. Разом із гуртом також проводимо зустрічі з лейблами.</p></div>
      </aside>
      </SceneEntrance>
       </div>

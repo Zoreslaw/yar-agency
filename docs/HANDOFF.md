@@ -133,3 +133,6 @@ Hero yellow action — 16 October 2026: feature/hero-yellow-action preserves exi
 
 
 Footer alignment — 16 October 2026: user requested the YAR mark at the start of the footer columns. footer-identity now uses align-self:start. This supersedes the earlier vertical-centering choice.
+
+
+Wuha copy correction — 16 October 2026: user clarified label meetings are ongoing work. Copy now says “Разом із гуртом також проводимо зустрічі з лейблами.”, superseding the one-off past-tense description.
