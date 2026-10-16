@@ -1,0 +1,25 @@
+/* Plain monochrome photographs; originals and responsive media stay unchanged. */
+.backstage-page .pinned-print,
+.backstage-page .collaboration-example .example-photo,
+.backstage-page .service-stories .story-photo,
+.backstage-page .dressing-mirror{
+ padding:0;
+ border:0;
+ background:transparent;
+ box-shadow:none;
+ transform:none;
+ transition:none;
+}
+.backstage-page .pinned-print:before,
+.backstage-page .collaboration-example .example-photo:before,
+.backstage-page .collaboration-example .example-photo:after{display:none}
+.backstage-page .pinned-print:hover,
+.backstage-page .collaboration-example .example-photo:hover,
+.backstage-page .service-stories .story-photo:hover{transform:none;translate:none}
+.backstage-page .pinned-print img,
+.backstage-page .service-stories .story-photo img,
+.backstage-page .collaboration-example .example-photo img,
+.backstage-page .dressing-mirror>img{filter:grayscale(1)}
+.backstage-page .format-example .example-photo{width:100%;margin:0}
+.backstage-page .mirror-portrait{width:100%;margin-inline:auto;transform:none}
+.backstage-page .service-stories .story-photo{cursor:default}

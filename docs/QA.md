@@ -220,3 +220,13 @@ Collaboration copy/photo follow-up — 16 October 2026: verified 1440 and 320 br
 npm run check, npm run build and npm run standalone passed; existing dependency use-client warnings remain. Actual browser at 1440×950 and 320×900: new responsive photograph loaded, full 4:3 composition visible, team text/action fit and document has no horizontal overflow. Stock-reference caption absent. Screenshots: ignored qa/team-photo/desktop.png and mobile.png. No interaction logic changed.
 
 Hero yellow hover — 16 October 2026: real pointer hover retains #FFCC00 fill and #1D223D label/shadow. Offset compresses 5px→3px with 2px translation. Desktop 1440 and mobile 320 inspected, full label visible, document width 320; action navigates to #contact. Check/build/standalone pass. Screenshot ignored: qa/poster-button/yellow-hover.png.
+
+
+## Plain photographs — 16 October 2026
+check, build, standalone and git diff --check pass. Existing dependency use-client warnings remain. Browser inspected at CSS widths 1440 and 320; document scroll width matches viewport, photo and copy compositions fit. Computed styles confirm grayscale(1) on ten photos, zero frame padding/shadows/resting rotation. Gallery, tape divider, mounts and mirror lamps absent. Intro route restored. Visible ticker runs while hovered. Questionnaire opening and Escape close verified, no request sent.
+
+
+Motion preference correction — 16 October 2026: user screenshot showed the static ticker fallback (single small copy), so hover pause alone did not explain their issue. Removed the obsolete yar-stage-light localStorage dependency from useBackstageMotion; its switch no longer exists. System reduced-motion and page/intersection guards remain. Screenshot alone cannot distinguish legacy saved preference from system reduced motion. Check/build/standalone pass. Browser confirms running ticker after change.
+
+
+Ticker continuity and main integration — 16 October 2026: each repeated text group now has min-width:100vw and flex-shrink:0, preventing a blank tail when the text is narrower than the viewport. Static reduced-motion layout resets min-width. Linear 38s transform loop uses translate3d and will-change only while active/in view. Seam geometry verified near 37999ms; desktop CSS width 1440 and mobile 320 have no document overflow. Ready-build browser sample: 90 requestAnimationFrame observations, 9 intervals above 34ms, max 50.9ms; occasional frame delays remain in this test environment, so smoothness on the user Chrome session is not confirmed. check/build/standalone and whitespace checks pass. User authorized integrating all current changes into main.

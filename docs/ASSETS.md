@@ -69,3 +69,7 @@ Collaboration image selection — 16 October 2026: user explicitly chose gallery
 
 ## Genuine team photograph — 16 October 2026
 User supplied codex-clipboard-667c9234-f220-42b6-9961-2c9c524424f3.jpg and identified the pictured people as Sofia and Vika. Unchanged 4032×3024 original copied to ignored source-assets/sofia-vika.jpg. node scripts/optimize-assets.mjs --team generates public/media/sofia-vika.webp (1800px) and sofia-vika-800.webp (800px), orientation normalization/resizing/WebP encoding only. No retouching or generated content. Team mirror now shows the full 4:3 image. Removed the obsolete stock-reference caption/link and updated alt text. Old stock assets and their factual provenance remain archived, no longer rendered. This supersedes earlier requests for a genuine shared photo.
+
+
+## Plain monochrome presentation — 16 October 2026
+All ten homepage photo instances now use CSS grayscale(1), without sepia, decorative mounts or frames. Original and responsive image files remain unchanged. Gallery viewer removed at user request; all media assets retained.

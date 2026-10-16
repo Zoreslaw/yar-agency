@@ -1,11 +1,8 @@
 import {useEffect, useRef, useState} from 'react';
 
-// Retain the old preference: visitors who disabled the stage experiment keep that choice.
+// The retired stage-light switch no longer controls page animation.
 export function useBackstageMotion() {
  const ref = useRef(null);
- const [enabled] = useState(() => {
-  try {return localStorage.getItem('yar-stage-light') !== 'off';} catch {return true;}
- });
  const [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
  const [pageVisible, setPageVisible] = useState(!document.hidden);
  useEffect(() => {
@@ -20,7 +17,7 @@ export function useBackstageMotion() {
   };
  }, []);
  useEffect(() => {
-  if (!enabled || reduced || !pageVisible) return;
+  if (reduced || !pageVisible) return;
   const observer = new IntersectionObserver(entries => {
    for (const entry of entries) if (entry.isIntersecting) {
     entry.target.classList.add('is-revealed');
@@ -29,7 +26,7 @@ export function useBackstageMotion() {
   }, {threshold: .12});
   ref.current.querySelectorAll('[data-reveal]').forEach(element => observer.observe(element));
   return () => observer.disconnect();
- }, [enabled, reduced, pageVisible]);
+ }, [reduced, pageVisible]);
  useEffect(() => {
   const observer = new IntersectionObserver(entries => {
    for (const entry of entries) entry.target.classList.toggle('is-loop-visible', entry.isIntersecting);
@@ -37,5 +34,5 @@ export function useBackstageMotion() {
   ref.current.querySelectorAll('[data-loop]').forEach(element => observer.observe(element));
   return () => observer.disconnect();
  }, []);
- return {ref, enabled: enabled && !reduced, active: enabled && !reduced && pageVisible, reduced};
+ return {ref, enabled: !reduced, active: !reduced && pageVisible, reduced};
 }

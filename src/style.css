@@ -286,17 +286,16 @@ footer:has(.motion-control)>a{margin-left:0}
 .services .services-heading>p{max-width:400px;font-size:14px;line-height:1.9}
 .backstage-route{position:absolute;inset:5% 4%;width:92%;height:90%;fill:none;stroke:var(--cream);stroke-width:1;opacity:.27;pointer-events:none;z-index:1}
 .agency-ticker{position:relative;overflow:clip;padding:19px 0;background:var(--yellow);color:var(--ink)}
-.ticker-track{display:flex;width:max-content}
-.ticker-copy{display:flex;align-items:center;gap:35px;white-space:nowrap;padding-right:35px;font-size:clamp(24px,3.6vw,54px);line-height:1.15;letter-spacing:-.025em;font-weight:600}
+.ticker-track{display:flex;width:max-content;transform:translate3d(0,0,0)}
+.ticker-copy{display:flex;flex-shrink:0;min-width:100vw;justify-content:space-around;align-items:center;gap:35px;white-space:nowrap;padding-right:35px;font-size:clamp(24px,3.6vw,54px);line-height:1.15;letter-spacing:-.025em;font-weight:600}
 .ticker-copy>span{font-size:.75em;color:var(--red)}
-@keyframes ticker-travel{to{transform:translateX(-50%)}}
+@keyframes ticker-travel{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 .motion-enabled .ticker-track{animation:ticker-travel 38s linear infinite}
-.agency-ticker:hover .ticker-track,.agency-ticker:focus-within .ticker-track,.agency-ticker.is-paused .ticker-track{animation-play-state:paused}
 .ticker-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:40px;height:40px;display:grid;place-items:center;background:var(--yellow);border:1px solid var(--ink)}
 .ticker-toggle svg{width:18px;height:18px}
 .ticker-toggle:focus-visible{outline-color:var(--ink)}
 .backstage-page:not(.motion-enabled) .ticker-track{width:100%;transform:none;padding:0 5%}
-.backstage-page:not(.motion-enabled) .ticker-copy{white-space:normal;flex-wrap:wrap;gap:12px;font-size:18px;padding:0}
+.backstage-page:not(.motion-enabled) .ticker-copy{min-width:0;white-space:normal;flex-wrap:wrap;gap:12px;font-size:18px;padding:0}
 .backstage-page:not(.motion-enabled) .ticker-copy+ .ticker-copy{display:none}
 .collaboration-formats .format-column>button{width:100%;min-height:180px}
 .collaboration-formats .format-column>button>p{max-width:360px}
@@ -494,31 +493,13 @@ html,body{overscroll-behavior-y:none;background:var(--ink)}
 }
 
 
-/* A torn strip of stage tape separates the two collaboration formats. */
-.collaboration-formats{position:relative;column-gap:10%}
-.format-tape{position:absolute;left:calc(50% - 9px);top:4px;width:18px;height:calc(100% - 8px);pointer-events:none;color:var(--cream);opacity:.78;transform:rotate(3deg)}
-.format-tape svg{display:block;width:100%;height:100%}
-.format-tape .tape-horizontal{display:none}
-.motion-enabled .collaboration.is-revealed .format-tape svg{animation:tape-stick .55s cubic-bezier(.22,.7,.2,1) both}
-@keyframes tape-stick{from{clip-path:inset(0 0 100% 0);transform:translateY(-5px)}to{clip-path:inset(0);transform:none}}
-@media(prefers-reduced-motion:reduce){.motion-enabled .collaboration.is-revealed .format-tape svg{animation:none}}
-@media(max-width:650px){
- .collaboration-formats{row-gap:58px}
- .format-tape{left:5px;top:auto;bottom:auto;width:calc(100% - 10px);height:13px;grid-row:2;position:relative;transform:rotate(-1.5deg);margin-block:-18px;}
- .format-tape .tape-vertical{display:none}
- .format-tape .tape-horizontal{display:block}
- .format-column:first-of-type{grid-row:1}
- .format-column:last-of-type{grid-row:3}
- .format-tape svg{width:100%;height:100%}
- .motion-enabled .collaboration.is-revealed .format-tape svg{animation-name:tape-stick-across}
-}
-@keyframes tape-stick-across{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
+.collaboration-formats{column-gap:10%}
+@media(max-width:650px){.collaboration-formats{row-gap:58px}}
 .collaboration-flow{margin-top:60px}
 .collaboration-flow .collaboration-example{position:relative;margin-top:0;isolation:isolate}
 .collaboration-example .example-photo{z-index:2}
 .motion-enabled .ticker-track{animation-play-state:paused}
-.motion-active .agency-ticker.is-loop-visible .ticker-track{animation-play-state:running}
-.agency-ticker:hover .ticker-track,.agency-ticker:focus-within .ticker-track{animation-play-state:paused}
+.motion-active .agency-ticker.is-loop-visible .ticker-track{animation-play-state:running;will-change:transform}
 .motion-enabled:not(.motion-active) [data-reveal],.motion-enabled:not(.motion-active) [data-reveal] *{animation-play-state:paused}
 @keyframes cue-enter{from{transform:translateY(12px);opacity:.65}to{transform:none;opacity:1}}
 .motion-enabled .service-cue.is-revealed .cue-inner{animation-duration:.5s}

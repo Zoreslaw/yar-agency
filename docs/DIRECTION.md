@@ -181,3 +181,13 @@ Hero action refinement — 16 October 2026: user approved a permanently yellow p
 
 
 Footer alignment — 16 October 2026: user requested the YAR mark at the start of the footer columns. footer-identity now uses align-self:start. This supersedes the earlier vertical-centering choice.
+
+
+## Plain photography — 16 October 2026
+User requested monochrome photographs without frames, removal of the gallery and torn-tape divider. Preserve photo placements and copy; remove photographic mounts, pins, tape and mirror lamps. Keep the animated line in the introduction, explicitly retained by user clarification. Ticker should continue under the pointer; system reduced-motion and visibility guards remain.
+
+
+Motion preference correction — 16 October 2026: user screenshot showed the static ticker fallback (single small copy), so hover pause alone did not explain their issue. Removed the obsolete yar-stage-light localStorage dependency from useBackstageMotion; its switch no longer exists. System reduced-motion and page/intersection guards remain. Screenshot alone cannot distinguish legacy saved preference from system reduced motion. Check/build/standalone pass. Browser confirms running ticker after change.
+
+
+Ticker continuity and main integration — 16 October 2026: each repeated text group now has min-width:100vw and flex-shrink:0, preventing a blank tail when the text is narrower than the viewport. Static reduced-motion layout resets min-width. Linear 38s transform loop uses translate3d and will-change only while active/in view. Seam geometry verified near 37999ms; desktop CSS width 1440 and mobile 320 have no document overflow. Ready-build browser sample: 90 requestAnimationFrame observations, 9 intervals above 34ms, max 50.9ms; occasional frame delays remain in this test environment, so smoothness on the user Chrome session is not confirmed. check/build/standalone and whitespace checks pass. User authorized integrating all current changes into main.
