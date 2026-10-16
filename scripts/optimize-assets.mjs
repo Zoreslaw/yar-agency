@@ -3,6 +3,18 @@ import {mkdir,writeFile,copyFile,stat} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('../',import.meta.url));
+if (process.argv[2] === '--team-strip') {
+ const original=resolve(root,'source-assets/team-photostrip.jpg');
+ for (const [width,suffix] of [[2400,''],[800,'-800']]) {
+  await sharp(original).resize({width,withoutEnlargement:true}).webp({quality:88,effort:5}).toFile(resolve(root,`public/media/team-photostrip${suffix}.webp`));
+ }
+ const {width,height}=await sharp(original).metadata();
+ for(let i=0;i<4;i++) {
+  const left=Math.round(width*i/4),right=Math.round(width*(i+1)/4);
+  await sharp(original).extract({left,top:0,width:right-left,height}).resize({width:800,withoutEnlargement:true}).webp({quality:88,effort:5}).toFile(resolve(root,`public/media/team-frame-${i+1}.webp`));
+ }
+ process.exit(0);
+}
 if (process.argv[2] === '--team') {
  for (const [width,suffix] of [[1800,''],[800,'-800']]) {
   await sharp(resolve(root,'source-assets/sofia-vika.jpg')).rotate().resize({width,withoutEnlargement:true}).webp({quality:84,effort:5}).toFile(resolve(root,`public/media/sofia-vika${suffix}.webp`));

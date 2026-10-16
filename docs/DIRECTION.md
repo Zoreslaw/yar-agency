@@ -191,3 +191,11 @@ Motion preference correction — 16 October 2026: user screenshot showed the sta
 
 
 Ticker continuity and main integration — 16 October 2026: each repeated text group now has min-width:100vw and flex-shrink:0, preventing a blank tail when the text is narrower than the viewport. Static reduced-motion layout resets min-width. Linear 38s transform loop uses translate3d and will-change only while active/in view. Seam geometry verified near 37999ms; desktop CSS width 1440 and mobile 320 have no document overflow. Ready-build browser sample: 90 requestAnimationFrame observations, 9 intervals above 34ms, max 50.9ms; occasional frame delays remain in this test environment, so smoothness on the user Chrome session is not confirmed. check/build/standalone and whitespace checks pass. User authorized integrating all current changes into main.
+
+
+## Service simplification — 16 October 2026
+User requested an initial cleanup of the three service directions. Removed their upper navigation, the closing “Окреме завдання чи весь концерт — обсяг роботи узгодимо разом.” sentence and all five service photo instances. Each direction is now an independent, initially collapsed disclosure; activating it reveals the description and task list. The discussion action remains. Introduction, collaboration and team photographs remain as before; media files are unchanged.
+
+
+## Team photostrip studies — 16 October 2026
+Use the newly supplied actual four-frame team strip. Earlier review studies compared a full-width strip, an inset strip and a staggered collage; these variants are not exposed in the current implementation. The current layout uses the full-width strip on desktop and four original crops in a 2×2 arrangement on mobile, with team copy below. Agency origin remains an explicit placeholder pending user facts. Earlier umbrella-photo collage studies are rejected.

@@ -1,0 +1,22 @@
+/* Supplied four-frame photograph without added frames. */
+.backstage-page .team-editorial{padding:0;background:var(--cream);border:0;color:var(--ink);scroll-margin-top:96px}
+.team-editorial-inner{margin:auto}
+.team-images img{display:block;width:100%;height:auto;filter:grayscale(1)}
+.team-frames{display:none}
+.team-editorial-copy{max-width:1440px;margin:auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6%;padding:60px 5% 72px;align-items:start}
+.backstage-page .team-editorial h2{font-family:'Oswald Variable',sans-serif;font-size:clamp(48px,5.3vw,78px);font-weight:500;line-height:1.03;letter-spacing:-.025em;color:var(--red);max-width:300px;margin:0}
+.team-people{font-size:18px;margin:20px 0 0}
+.team-editorial .team-description>p,.team-origin>p{font-size:14px;line-height:1.85;margin:0}
+.team-description .yar-action{margin-top:26px}
+.team-origin h3{font-family:'Oswald Variable',sans-serif;font-size:30px;font-weight:500;color:var(--red);line-height:1.1;margin:0 0 18px}
+.team-origin>span{display:block;font-size:10px;letter-spacing:.06em;text-transform:uppercase;margin-top:18px;opacity:.6}
+@media(max-width:650px){
+ .team-editorial-copy{grid-template-columns:1fr;gap:28px;padding:32px 6% 44px}
+ .backstage-page .team-editorial h2{font-size:48px;max-width:none}
+ .team-people{font-size:16px;margin-top:14px}
+ .team-editorial .team-description>p,.team-origin>p{font-size:13px;line-height:1.85}
+ .team-origin h3{font-size:27px}
+ .team-description .yar-action{margin-top:22px}
+ .team-panorama{position:absolute;width:1px!important;height:1px!important;overflow:hidden;clip-path:inset(50%)}
+ .team-frames{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0}
+}

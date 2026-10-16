@@ -73,3 +73,7 @@ User supplied codex-clipboard-667c9234-f220-42b6-9961-2c9c524424f3.jpg and ident
 
 ## Plain monochrome presentation — 16 October 2026
 All ten homepage photo instances now use CSS grayscale(1), without sepia, decorative mounts or frames. Original and responsive image files remain unchanged. Gallery viewer removed at user request; all media assets retained.
+
+
+## Team photostrip — 16 October 2026
+User supplied codex-clipboard-2c52e09b-e8db-4f3e-be9c-c704e100e1a4.jpg (4732×1527), the actual four-frame team photograph from the layout reference. Unchanged original preserved in ignored source-assets/team-photostrip.jpg. scripts/optimize-assets.mjs --team-strip produces 2400/800px WebP strips and four 800px quarter crops for the mobile 2×2 layout. Original printed black divisions remain; no added frames, retouching or generated imagery. Umbrella photograph is no longer used in this section.

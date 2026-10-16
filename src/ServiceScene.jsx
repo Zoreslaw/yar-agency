@@ -34,9 +34,9 @@ function SceneLayer({enabled,variant,className,children}) {
 
 export function ServiceScene({id,enabled,copy,artwork}) {
  return <article className={`service-story story-${id}`} aria-labelledby={`${id}-title`}>
-  <div className="story-layout">
+  <div className={`story-layout${artwork ? '' : ' story-layout--text'}`}>
    <SceneLayer enabled={enabled} variant="copy" className="story-copy">{copy}</SceneLayer>
-   <SceneLayer enabled={enabled} variant={id} className="story-visual">{artwork}</SceneLayer>
+   {artwork && <SceneLayer enabled={enabled} variant={id} className="story-visual">{artwork}</SceneLayer>}
   </div>
  </article>;
 }

@@ -12,6 +12,7 @@ import {ActionButton, UtilityButton} from './components/Buttons.jsx';
 import {MouthSignal} from './MouthSignal.jsx';
 import {SceneEntrance} from './SceneEntrance.jsx';
 import {ServiceStories} from './ServiceStories.jsx';
+import {TeamSection} from './TeamSection.jsx';
 const CooperationModal=lazy(()=>import('./CooperationModal.jsx'));
 import {useBackstageMotion} from './StageLighting.jsx';
 
@@ -103,18 +104,7 @@ function App(){
      </div>
      </div>
     </section>
-    <section className="team stage-section" id="team" aria-labelledby="team-title">
-     <SceneEntrance className="team-composition" enabled={stageMotion.active}>
-      <figure className="mirror-portrait" data-motion="photo">
-       <div className="dressing-mirror">
-        <img src="/media/sofia-vika.webp" srcSet="/media/sofia-vika-800.webp 800w, /media/sofia-vika.webp 1800w" sizes="(max-width: 650px) 88vw, 46vw" alt="Софія та Віка під парасолькою" loading="lazy"/>
-       </div>
-      </figure>
-      <div className="mirror-content"><div data-motion="text" data-delay="0.1"><h2 id="team-title">Наша <br/>команда.</h2></div>
-       <div className="team-copy" data-motion="text" data-delay="0.2"><p>Ми працюємо з артистами й організовуємо музичні події в Польщі. З нами ви обговорюєте задачі, домовленості та організацію виступу.</p><p>Напишіть про свій гурт і плани. Визначимо, яку частину роботи можемо взяти на себе.</p><ActionButton tone="red" className="team-contact-action" href="#contact">Зв’язатися з командою</ActionButton></div>
-      </div>
-     </SceneEntrance>
-    </section>
+    <TeamSection motion={stageMotion.active}/>
    <section className="contact stage-section" id="contact" aria-labelledby="contact-title">
     <div className="contact-main"><h2 id="contact-title">Що ти<br/>задумав?</h2>
      <p className="contact-invitation">Розкажи про свою ідею — обговоримо, як можемо долучитися.</p>
