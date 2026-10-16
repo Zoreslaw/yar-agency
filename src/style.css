@@ -4,7 +4,7 @@
 @media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
 
 /* Full-bleed hero and persistent navigation. Scrims protect text without blurring film. */
-:root{--header-height:88px;scroll-padding-top:calc(var(--header-height) + 22px)}
+:root{--header-height:88px;scroll-padding-top:var(--header-height)}
 .header{display:flex;align-items:center;justify-content:space-between;padding:20px 4%;gap:40px;position:fixed;inset:0 0 auto;height:var(--header-height);z-index:40;color:var(--cream);background:transparent;border-bottom:1px solid transparent;transition:background-color .2s,border-color .2s;isolation:isolate}
 .header.is-scrolled,.header.menu-open{background:rgba(20,25,45,.88);border-color:rgba(255,251,212,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 .brand{display:block;width:86px;flex-shrink:0}.navigation{gap:36px}.navigation a{min-height:44px;display:flex;align-items:center}
@@ -172,7 +172,7 @@ footer:has(.motion-control)>a{margin-left:0}
 @keyframes cue-enter{from{transform:translateX(35px);opacity:.45}to{transform:none;opacity:1}}
 .motion-enabled .service-cue.is-revealed{animation:none}
 .motion-enabled .service-cue.is-revealed .cue-inner{animation:cue-enter .65s cubic-bezier(.22,.7,.2,1) both}
-.services .collaboration{padding:75px 7%;margin:0;background:var(--ink);scroll-margin-top:var(--header-height)}
+.services .collaboration{padding:75px 7%;margin:0;background:var(--ink)}
 .collaboration-example{display:flex;gap:32px;align-items:center;max-width:650px;margin:40px 0 0 auto;padding-top:25px;scroll-margin-top:calc(var(--header-height) + 30px)}
 .example-photo{width:155px;flex-shrink:0;background:var(--cream);padding:6px 6px 16px;transform:rotate(-5deg);box-shadow:6px 7px 0 #0002}
 .example-photo img{width:100%;height:auto;aspect-ratio:1.4;object-fit:cover}

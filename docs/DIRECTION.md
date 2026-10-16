@@ -198,4 +198,8 @@ User requested an initial cleanup of the three service directions. Removed their
 
 
 ## Team photostrip studies — 16 October 2026
-Use the newly supplied actual four-frame team strip. Earlier review studies compared a full-width strip, an inset strip and a staggered collage; these variants are not exposed in the current implementation. The current layout uses the full-width strip on desktop and four original crops in a 2×2 arrangement on mobile, with team copy below. Agency origin remains an explicit placeholder pending user facts. Earlier umbrella-photo collage studies are rejected.
+Use the newly supplied actual four-frame team strip. Earlier review studies compared a full-width strip, an inset strip and a staggered collage; these variants are not exposed in the current implementation. The current layout uses the full-width strip on desktop and four original crops in a 2×2 arrangement on mobile, with team copy below. The story example is proposed prototype copy, not verified company history. Earlier umbrella-photo collage studies are rejected.
+
+
+## Team copy layout — 16 October 2026
+Arrange the team heading and contact action together on the left; keep the agency service introduction and a separate story sample on the right. Omit the names caption. Stack the groups on mobile. Story sample illustrates proposed copy tone for the prototype; verification of any biographical details is pending.
