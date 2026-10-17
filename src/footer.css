@@ -21,7 +21,7 @@
 .site-footer{padding:48px 6% 20px}
 .site-footer .footer-top{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,64px);padding-bottom:36px}
 .footer-identity,.footer-navigation,.footer-contacts{min-width:0}
-.footer-identity{align-self:center}
+.footer-identity{align-self:start}
 .site-footer .footer-brand{display:block;margin:0}
 .site-footer .footer-brand .logo{width:120px}
 .site-footer .footer-label{font-size:10px;line-height:1.5;color:var(--red);margin-bottom:12px;letter-spacing:.08em}
@@ -59,12 +59,14 @@
 }
 @media(prefers-reduced-motion:reduce){.contact-alternatives .channel-icon,.contact-alternatives>a>svg,.footer-contacts>a>svg:last-child{transition:none;transform:none}}
 
-/* Equal columns share a top line; the original mark balances the taller links. */
+/* Desktop columns share a top edge; mobile groups centre within equal halves. */
 .site-footer .footer-contacts>a{max-width:260px}
 @media(max-width:900px){.site-footer .footer-contacts>a>svg:last-child{display:none}}
 @media(max-width:760px){
  .site-footer .footer-top{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 18px}
  .site-footer .footer-identity{grid-column:1/-1;justify-self:center;align-self:start}
  .site-footer .footer-brand .logo{width:100px}
+ .site-footer .footer-navigation,.site-footer .footer-contacts{align-items:center;text-align:center}
+ .site-footer .footer-contacts>a{justify-content:center}
  .site-footer .footer-meta{justify-content:center;align-items:center;text-align:center}
 }

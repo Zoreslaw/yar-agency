@@ -237,3 +237,5 @@ Use a compact disclosure through 900px, including tablets. Hamburger turns into 
 
 ## Footer alignment — 17 October 2026
 Use three equal columns with consistent gaps above 760px. Keep the original mark vertically centred in its column and align agency/contact labels at the top. At 760px and below, centre the logo above two equal link columns and centre the policy row. Hide trailing contact arrows through 900px to preserve room for actual contact text; leading icons remain. Content and links unchanged.
+
+Footer position correction — 17 October 2026: align the logo to the top of the desktop/tablet columns. Below 760px keep the centred logo above equal link columns; centre each column's heading and link groups within its own half instead of leaving both groups at their left edges.
