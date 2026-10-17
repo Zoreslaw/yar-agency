@@ -1,14 +1,19 @@
-/* Each format owns its example, preserving the reading order on mobile. */
-.collaboration-formats .format-column{min-width:0;display:grid;grid-template-rows:auto minmax(76px,auto) 1fr;align-content:start}
-.format-example{margin-top:32px;min-width:0}
-.collaboration .format-example .collaboration-example{display:grid;grid-template-columns:minmax(0,1fr);gap:32px;margin:0;padding:0;align-items:start}
-.format-example .example-copy{min-width:0}
-.format-example .example-copy h4{font-size:clamp(30px,3.2vw,46px)}
-.format-example .collaboration-example .example-photo{width:calc(100% - 12px);margin:0 6px;padding:8px 8px 22px;aspect-ratio:3/2}
-.format-example .collaboration-example .example-photo img{height:100%;aspect-ratio:auto;object-fit:cover}
+/* Two readable formats, with separate headings and questionnaire actions. */
+.services .collaboration{padding-block:56px 60px}
+.collaboration .collaboration-formats{column-gap:9%;row-gap:40px;align-items:stretch}
+.collaboration .format-column{min-width:0;display:flex;flex-direction:column;align-items:start}
+.collaboration .format-column h3{font-family:var(--display-font);font-size:clamp(38px,4vw,56px);font-weight:500;line-height:1.08;letter-spacing:-.02em;margin:0 0 24px}
+.collaboration .format-details{max-width:510px}
+.collaboration .format-column p{font-size:15px;line-height:1.75;margin:0 0 14px}
+.collaboration .format-details p:last-child{margin-bottom:0}
+.collaboration .format-column .format-case{width:100%;max-width:510px;border-top:1px solid #fffbd433;padding-top:20px;margin:24px 0 0;font-size:14px;color:#fffbd4c7}
+.collaboration .format-case strong{font-weight:650;color:var(--cream)}
+.collaboration .format-cta{margin-top:auto;padding-top:28px}
 @media(max-width:650px){
- .collaboration-formats .format-column{display:block}
- .format-example{margin-top:36px}
- .collaboration .format-example .collaboration-example{gap:30px}
- .format-example .example-copy h4{font-size:35px}
+ .services .collaboration{padding-block:36px 40px}
+ .collaboration .collaboration-formats{row-gap:40px}
+ .collaboration .format-column h3{font-size:clamp(36px,8vw,46px);margin-bottom:20px}
+ .collaboration .format-column p{font-size:14px;line-height:1.7}
+ .collaboration .format-column .format-case{font-size:13px;padding-top:18px;margin-top:20px}
+ .collaboration .format-cta{padding-top:22px}
 }

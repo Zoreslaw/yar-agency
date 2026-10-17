@@ -230,3 +230,24 @@ Motion preference correction — 16 October 2026: user screenshot showed the sta
 
 
 Ticker continuity and main integration — 16 October 2026: each repeated text group now has min-width:100vw and flex-shrink:0, preventing a blank tail when the text is narrower than the viewport. Static reduced-motion layout resets min-width. Linear 38s transform loop uses translate3d and will-change only while active/in view. Seam geometry verified near 37999ms; desktop CSS width 1440 and mobile 320 have no document overflow. Ready-build browser sample: 90 requestAnimationFrame observations, 9 intervals above 34ms, max 50.9ms; occasional frame delays remain in this test environment, so smoothness on the user Chrome session is not confirmed. check/build/standalone and whitespace checks pass. User authorized integrating all current changes into main.
+
+## Final privacy policy — 17 October 2026
+Production build preview inspected at 1440/390/320: no horizontal overflow or clipped policy prose, heading, address or identifiers. No draft/pending markers in the public policy. Contents anchors work. Footer/first-step questionnaire links have final labels and valid local destinations; Escape returns focus to the questionnaire trigger. No real submission made. Live domain audit via browser CDP: only www.yar-agcy.space requests on reload/form opening, cookies and local/session storage empty. Vercel config read-only: two Gmail recipients incl. agency email, no env changes; Hobby plan observed. Check/build/standalone and whitespace verification pass. Screenshots ignored in qa/privacy-final. Remaining operational status recorded in FOOTER-PRIVACY.md; no publish, paid plan change or legal-compliance certification.
+
+
+## Compact collaboration — 17 October 2026
+- Actual browser at CSS widths 1440, 1100, 390 and 320: both format layouts inspected; no horizontal document overflow or overflowing heading/paragraph/button text. Desktop section 1256px before / 710px after at 1440.
+- All four header links checked at 1440 and 320: target top matches fixed header bottom (88/78px, error <0.2px), mobile menu closes. Existing dynamic anchor hook retained. Ordinary smooth collaboration navigation and reduced-motion navigation checked. Initial #collaboration reload also checked.
+- Both format actions open the questionnaire; Escape closes and returns focus to each trigger. No live submission.
+- npm run check, npm run build, npm run standalone pass. Existing dependency use-client warnings retained. Screenshot ignored: qa/compact-collaboration/desktop.png.
+
+
+## Text-only collaboration — 17 October 2026
+Text-only collaboration: actual browser inspected at 1440/768/320, no document/text overflow. Collaboration/team/contact links align below fixed header at desktop/mobile (88/78px within 0.25px); menu closes. Both separate format actions open questionnaire, Escape closes and restores each trigger. No submission. check/build/standalone pass with existing dependency use-client warnings. Screenshot ignored at qa/compact-collaboration/text-desktop.png.
+
+## Client scenarios and questionnaire UI — 17 October 2026
+- `node --test tests/questionnaire.test.mjs`: 8/8 pass, including free-form socials/performance answers, escaped email rendering, relevant-field isolation, optional empty dates, ordered routes and existing mocked API behavior.
+- `npm run check`, `npm run build`, `npm run standalone`, `git diff --check`: pass. Existing dependency use-client bundling warnings remain.
+- Actual IAB preview at localhost:4174 inspected at desktop, 900px and 320px. Final 320px measurement: innerWidth 320, document scrollWidth 320, dialog scrollWidth 320. First step, management fields and review text fit; calendar shows all seven columns. Screenshot tooling temporarily produced scaled captures; fresh tab restored normal capture. Final captures are in /tmp/yar-questionnaire-qa, outside Git.
+- Browser exercised free-form @handle, first show/no audience estimate, short other enquiry, management, tour and separate task; no dates required. Route suggestion selection, arbitrary city entry, adding and deleting middle rows preserve order. Single-day calendar choice renders once. Switching tour/management restores separate descriptions and route/date draft. Close/reopen retains mounted answers and step. Required validation focuses name; Escape returns focus to the invoking CTA. Review edit controls work.
+- Email API tested with mocked provider only. No real message, push or deployment. Drafts do not persist through page refresh. Mobile keyboard behavior on physical iOS/Android devices and real inbox delivery are not verified.

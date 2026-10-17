@@ -8,12 +8,14 @@ import './style.css';
 import './footer.css';
 import './collaboration-examples.css';
 import './photographs.css';
+import {InterfaceIcon} from './components/InterfaceIcon.jsx';
 import {ActionButton, UtilityButton} from './components/Buttons.jsx';
 import {MouthSignal} from './MouthSignal.jsx';
 import {SceneEntrance} from './SceneEntrance.jsx';
 import {ServiceStories} from './ServiceStories.jsx';
 import {TeamSection} from './TeamSection.jsx';
 const CooperationModal=lazy(()=>import('./CooperationModal.jsx'));
+import {useSectionAnchors} from './useSectionAnchors.js';
 import {useBackstageMotion} from './StageLighting.jsx';
 
 const photos = [
@@ -36,6 +38,7 @@ function Logo({className=''}){const id=useId();return <svg className={`logo ${cl
 function Photo({item,...props}){return <img src={assets[item.key]} srcSet={`${assets[item.key].replace(".webp","-800.webp")} 800w, ${assets[item.key]} 1800w`} sizes="(max-width: 650px) 90vw, 75vw" alt={item.alt} loading="lazy" decoding="async" width={item.key==='people'?4642:6000} height={item.key==='people'?3075:4000} {...props}/>}
 
 function App(){
+ useSectionAnchors();
  const stageMotion=useBackstageMotion();
  const [menu,setMenu]=useState(false),[brief,setBrief]=useState(null);
  const briefTrigger=useRef(null);
@@ -51,13 +54,13 @@ function App(){
   return()=>{observer.disconnect();document.removeEventListener('visibilitychange',update);media.removeEventListener('change',update);};
  },[]);
 
- const openBrief=(value='Концерт')=>{setMenu(false);setQuestionnaireReady(true);setBrief(value);};
+ const openBrief=(value='Інше')=>{setMenu(false);setQuestionnaireReady(true);setBrief(value);};
  return <>
   <a className="skip" href="#services">До змісту</a>
   <header className={`header${scrolled?" is-scrolled":""}${menu?" menu-open":""}`}>
    <a href="#top" className="brand" aria-label="YAR — на початок" onClick={()=>setMenu(false)}><Logo/></a>
    <nav aria-label="Головна навігація" className={menu?'navigation open':'navigation'}>
-    <a href="#services" onClick={()=>setMenu(false)}>Що робимо</a><a href="#team" onClick={()=>setMenu(false)}>Хто ми</a><a href="#collaboration" onClick={()=>setMenu(false)}>Співпраця</a><a href="#contact" onClick={()=>setMenu(false)}>Поговорімо ↗</a>
+    <a href="#services" onClick={()=>setMenu(false)}>Що робимо</a><a href="#collaboration" onClick={()=>setMenu(false)}>Співпраця</a><a href="#team" onClick={()=>setMenu(false)}>Хто ми</a><a href="#contact" onClick={()=>setMenu(false)}>Поговорімо <InterfaceIcon/></a>
    </nav>
    <UtilityButton className="menu-toggle" aria-expanded={menu} aria-label={menu?'Закрити меню':'Відкрити меню'} onClick={()=>setMenu(!menu)}>{menu?'Закрити':'Меню'}</UtilityButton>
   </header>
@@ -82,27 +85,30 @@ function App(){
        </div>
       </div>
      </SceneEntrance>
-     <ServiceStories enabled={stageMotion.active} onDiscuss={event=>{briefTrigger.current=event.currentTarget;event.currentTarget.focus();openBrief('Інше');}}/>
+     <ServiceStories enabled={stageMotion.active} onDiscuss={event=>{briefTrigger.current=event.currentTarget;event.currentTarget.focus();openBrief('Окреме завдання');}}/>
      <div className="agency-ticker" data-loop role="region" aria-label="Booking, концерти, супровід артистів"><div className="ticker-track" aria-hidden="true">{[0,1].map(i=><span className="ticker-copy" key={i}>BOOKING <span>/</span> КОНЦЕРТИ <span>/</span> СУПРОВІД АРТИСТІВ <span>/</span> YAR <span>/</span></span>)}</div></div>
-     <div className="collaboration" id="collaboration" data-reveal><div className="collaboration-intro"><h3>На один концерт.<br/>Або надовго.</h3></div><div className="collaboration-formats">
-      <div className="format-column"><ActionButton className="format-action" onClick={event=>{briefTrigger.current=event.currentTarget;event.currentTarget.focus();openBrief('Концерт');}}>Окрема задача<br/>або подія</ActionButton><p className="format-description">Для конкретного виступу, поїздки чи задачі, яку хочете передати команді.</p>
-     <SceneEntrance className="format-example" enabled={stageMotion.active}>
-     <aside className="collaboration-example project-example" aria-labelledby="d016-title">
-      <div className="example-photo" data-motion="photo" data-delay="0.15"><Photo item={photos[2]} sizes="(max-width: 650px) 88vw, 42vw"/></div>
-      <div className="example-copy" data-motion="text"><h4 id="d016-title">Ви граєте.<br/>Ми організовуємо.</h4><p>Можемо підключитися до окремої задачі або вести всю підготовку. Обсяг роботи й вартість узгодимо під вашу подію.</p><p>З <strong>D016</strong> беремо на себе домовленості з майданчиком, підготовку концерту й координацію на місці.</p></div>
-     </aside>
-     </SceneEntrance>
+     <section className="collaboration" id="collaboration" aria-label="Формати співпраці">
+      <div className="collaboration-formats">
+       <article className="format-column" aria-labelledby="format-task-title">
+        <h3 id="format-task-title">Окрема задача<br/>або подія</h3>
+        <div className="format-details">
+         <p>Для конкретного виступу, поїздки чи задачі, яку хочете передати команді.</p>
+         <p>Можемо підключитися до окремої задачі або вести всю підготовку. Обсяг роботи й вартість узгодимо під вашу подію.</p>
+        </div>
+        <p className="format-case">З <strong>D016</strong> беремо на себе домовленості з майданчиком, підготовку концерту й координацію на місці.</p>
+        <div className="format-cta"><ActionButton size="small" onClick={event=>{briefTrigger.current=event.currentTarget;event.currentTarget.focus();openBrief('Окреме завдання');}}>Обговорити задачу</ActionButton></div>
+       </article>
+       <article className="format-column" aria-labelledby="format-artist-title">
+        <h3 id="format-artist-title">Постійна робота<br/>з артистом</h3>
+        <div className="format-details">
+         <p>Для гуртів, яким потрібна регулярна допомога з організацією та просуванням.</p>
+         <p>Стаємо менеджерами вашого гурту: беремо на себе узгоджені задачі й разом плануємо наступні кроки.</p>
+        </div>
+        <p className="format-case" id="moments">Так працюємо з <strong>wuha</strong>: ведемо сторінку й контент, подаємо заявки на фестивалі. Разом із гуртом також проводимо зустрічі з лейблами.</p>
+        <div className="format-cta"><ActionButton size="small" onClick={event=>{briefTrigger.current=event.currentTarget;event.currentTarget.focus();openBrief('Постійна співпраця');}}>Обговорити співпрацю</ActionButton></div>
+       </article>
       </div>
-      <div className="format-column"><ActionButton className="format-action" onClick={event=>{briefTrigger.current=event.currentTarget;event.currentTarget.focus();openBrief('Постійна співпраця');}}>Постійна робота<br/>з артистом</ActionButton><p className="format-description">Для гуртів, яким потрібна регулярна допомога з організацією та просуванням.</p>
-     <SceneEntrance className="format-example" enabled={stageMotion.active}>
-     <aside className="collaboration-example" id="moments" aria-labelledby="artist-name">
-      <div className="example-photo" data-motion="photo" data-delay="0.2"><Photo item={photos[0]} sizes="(max-width: 650px) 88vw, 42vw"/></div>
-      <div className="example-copy" data-motion="text" data-delay="0.15"><h4 id="artist-name">Команда для<br/>вашого гурту.</h4><p>Стаємо менеджерами вашого гурту: беремо на себе узгоджені задачі й разом плануємо наступні кроки.</p><p>Так працюємо з <strong>wuha</strong>: ведемо сторінку й контент, подаємо заявки на фестивалі. Разом із гуртом також проводимо зустрічі з лейблами.</p></div>
-     </aside>
-     </SceneEntrance>
-      </div>
-     </div>
-     </div>
+     </section>
     </section>
     <TeamSection motion={stageMotion.active}/>
    <section className="contact stage-section" id="contact" aria-labelledby="contact-title">
@@ -121,7 +127,7 @@ function App(){
     <nav className="footer-navigation" aria-label="Навігація внизу сторінки"><p className="footer-label">Агенція</p><a href="#services">Що робимо</a><a href="#collaboration">Співпраця</a><a href="#team">Хто ми</a></nav>
     <div className="footer-contacts"><p className="footer-label">На зв’язку</p><a href="mailto:yars.agency@gmail.com" aria-label="Написати YAR електронною поштою"><ContactIcon kind="email"/><span>Написати нам</span><Arrow diagonal/></a><a href="tel:+48723655123"><ContactIcon kind="phone"/><span>+48 723 655 123</span><Arrow diagonal/></a>{socialLinks.map(social=><a key={social.kind} href={social.href} target="_blank" rel="noreferrer" aria-label={`YAR у ${social.name} (нова вкладка)`}><ContactIcon kind={social.kind}/><span>{social.handle||social.name}</span><Arrow diagonal/></a>)}</div>
    </div>
-   <div className="footer-meta"><a href="/privacy.html" target="_blank" rel="noreferrer">Політика конфіденційності <span className="footer-draft">· проєкт</span><span className="sr-only"> (нова вкладка)</span></a></div>
+   <div className="footer-meta"><a href="/privacy.html" target="_blank" rel="noreferrer">Політика конфіденційності<span className="sr-only"> (нова вкладка)</span></a></div>
   </footer>
   <Suspense fallback={<div className="request-loading" role="status">Відкриваємо анкету…</div>}>{questionnaireReady&&<CooperationModal opened={brief!==null} onClose={()=>setBrief(null)} onExit={()=>briefTrigger.current?.focus({preventScroll:true})} initialType={brief||'Концерт'} logo={<Logo/>}/>}</Suspense>
  </>;

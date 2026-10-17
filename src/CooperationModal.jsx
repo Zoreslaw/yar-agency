@@ -13,7 +13,7 @@ const theme=createTheme({fontFamily:'Manrope Variable, sans-serif',defaultRadius
  headings:{fontFamily:'Oswald Variable, sans-serif'},primaryColor:'yar',primaryShade:9,
  colors:{yar:['#f3f3f6','#e5e6ed','#cbd0de','#b0b8cf','#919dbc','#7181a8','#536890','#384f78','#283b60','#1D223D']}});
 export default function CooperationModal({opened,onClose,onExit,initialType,logo}) {
- const reduced=useReducedMotion(), mobile=useMediaQuery('(max-width:650px)');
+ const reduced=useReducedMotion(), mobile=useMediaQuery('(max-width:900px)');
  return <MantineProvider theme={theme}><DatesProvider settings={{locale:'uk',firstDayOfWeek:1}}>
   <Modal.Root opened={opened} onClose={onClose} returnFocus={false} onExitTransitionEnd={onExit} keepMounted fullScreen={mobile} centered size={1040}
    transitionProps={{duration:reduced?0:140}}

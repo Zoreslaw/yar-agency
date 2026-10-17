@@ -36,7 +36,6 @@
 .footer-meta{display:flex;justify-content:flex-end;align-items:center;gap:16px 32px;border-top:1px solid #1d223d30;padding-top:14px;font-size:11px;line-height:1.7}
 .footer-meta>a{display:flex;align-items:center;flex-wrap:wrap;gap:0 4px;min-height:44px}
 .footer-meta>a:hover{text-decoration:underline;text-underline-offset:4px}
-.footer-draft{color:var(--red)}
 @media(max-width:800px){.site-footer .footer-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}.footer-identity{grid-column:1/-1;display:flex;align-items:center}}
 @media(max-width:650px){
  .stage-world .contact{padding:52px 6% 44px;display:block}

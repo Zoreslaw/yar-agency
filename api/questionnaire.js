@@ -18,13 +18,13 @@ export default async function handler(req,res){
  if(process.env.VERCEL_BRANCH_URL)origins.add(`https://${process.env.VERCEL_BRANCH_URL}`);
  if(!origins.has(req.headers.origin))return res.status(403).json({error:'origin'});
  if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))return res.status(415).json({error:'content_type'});
- if(Number(req.headers['content-length'])>20000)return res.status(413).json({error:'size'});
+ if(Number(req.headers['content-length'])>60000)return res.status(413).json({error:'size'});
  const ip=String(req.headers['x-forwarded-for']||req.socket?.remoteAddress||'unknown').split(',')[0].trim();
  if(limited(ip)){res.setHeader('Retry-After','60');return res.status(429).json({error:'rate_limit'});}
  let body,data;
  try{
   body=typeof req.body==='string'?JSON.parse(req.body):req.body;
-  if(Buffer.byteLength(JSON.stringify(body)||'')>20000)return res.status(413).json({error:'size'});
+  if(Buffer.byteLength(JSON.stringify(body)||'')>60000)return res.status(413).json({error:'size'});
   if(body?.website)return res.status(400).json({error:'invalid'});
   data=validateQuestionnaire(body);
  }catch{return res.status(400).json({error:'invalid'});}

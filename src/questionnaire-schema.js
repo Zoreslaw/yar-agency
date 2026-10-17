@@ -1,12 +1,14 @@
-export const types = ['Концерт', 'Тур / поїздка', 'Постійна співпраця', 'Інше'];
+export const types = ['Концерт', 'Тур / поїздка', 'Постійна співпраця', 'Окреме завдання', 'Інше'];
+export const typeTitles = {'Постійна співпраця':'Менеджмент артиста', 'Інше':'Ще не визначився / інша ідея'};
+export const commonFields = ['name','project','role','email','social'];
 export const labels = {
- name:'Ім’я / псевдонім / назва гурту', email:'Електронна пошта', social:'Соціальні мережі',
- city:'Місто / майданчик', dates:'Дати', audience:'Очікувана кількість глядачів', previous:'Попередні продажі квитків',
- listeners:'Цільова аудиторія', duration:'Тривалість виступу', format:'Формат виступу', eventRole:'Роль у події',
- merch:'Мерч', route:'Маршрут туру', crew:'Склад поїздки', scope:'Напрям співпраці', idea:'Ситуація / потрібна допомога'
+ name:'Як до тебе звертатися?', project:'Артист, гурт або організація', role:'Твоя роль у проєкті', email:'Електронна пошта', social:'Музика та соцмережі',
+ city:'Місто та майданчик, якщо вже відомі', dates:'Дата або період', audience:'Скільки людей очікуєш?', previous:'Попередні виступи',
+ duration:'Орієнтовна тривалість виступу', format:'Склад і формат виступу', eventRole:'Що це за подія?', route:'Маршрут', crew:'Хто їде з вами?',
+ team:'Хто вже працює над проєктом?', goals:'Які плани та цілі на найближчий час?', readiness:'Що вже готово або підтверджено?', idea:'Запит до YAR'
 };
 export const fieldsByType = {
- 'Концерт':['city','dates','audience','previous','listeners','duration','format','eventRole','merch'],
- 'Тур / поїздка':['route','dates','crew'], 'Постійна співпраця':['scope'], 'Інше':[]
+ 'Концерт':['readiness','city','dates','audience','previous','duration','format','eventRole'],
+ 'Тур / поїздка':['readiness','route','dates','crew'],
+ 'Постійна співпраця':['goals','team'], 'Окреме завдання':['readiness','dates'], 'Інше':[]
 };
-

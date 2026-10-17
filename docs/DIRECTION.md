@@ -203,3 +203,19 @@ Use the newly supplied actual four-frame team strip. Earlier review studies comp
 
 ## Team copy layout — 16 October 2026
 Arrange the team heading and contact action together on the left; keep the agency service introduction and a separate story sample on the right. Omit the names caption. Stack the groups on mobile. Story sample illustrates proposed copy tone for the prototype; verification of any biographical details is pending.
+
+## Final privacy text — 17 October 2026
+User approved replacing the policy draft with final text based on supplied CEIDG details. Retain the calm cream reading layout and original viewport-cropped mark. Replace draft warning/pending callouts with confirmed controller details and ordinary legal text. Footer/questionnaire links now simply read “Політика конфіденційності”. Do not attach unverified active-business status or a blanket compliance certification to the public policy. No contact/footer redesign or new media in this revision.
+
+## Client-oriented questionnaire — 17 October 2026
+Separate management from event work and give one-off tasks and uncertain enquiries explicit paths. See QUESTIONNAIRE-SCENARIOS.md for client journeys. Require only contact name, email and request. Accept natural-language context; retain optional calendar and ordered route rows with unrestricted city input. Collapse secondary concert/project questions and show edit actions in review. Compact modal begins at 900px.
+
+
+## Compact collaboration — 17 October 2026
+User requested a shorter collaboration section. Retain both formats and their full existing examples/copy. Left-aligned heading becomes one line from 900px; reduce section/button/description spacing. From 1100px each example places a narrow 3:4 photograph beside its text; smaller widths retain stacked 16:9 images. Mobile keeps the complete task/example before ongoing work/example. Original assets unchanged; cropping is CSS only. Existing measured-header anchor resolver remains compatible with the new geometry.
+
+
+## Text-only collaboration — 17 October 2026
+User requested a typographic experiment without collaboration photos or “На один концерт. Або надовго.”. The two format names are now plain headings, followed by scope, a quieter factual D016/wuha example and a separate small questionnaire action. Repeated example slogans removed. Desktop keeps two open columns; mobile reads each format completely. No new claims or media.
+
+Questionnaire UI refinement: smaller 220px desktop brand rail, bounded tablet reading width, compact radio rows below 420px with selected-choice explanation, privacy text after contact fields, quieter selected styling, explicit route controls, and review grouped into contacts/request with inline editing. Preserve original mark, cream/burgundy/ink palette and main action treatment. No extra decoration or page-wide redesign.

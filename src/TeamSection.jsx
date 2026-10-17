@@ -8,7 +8,7 @@ export function TeamSection({motion}) {
   <SceneEntrance className="team-editorial-inner" enabled={motion}>
    <div className="team-images" data-motion="photo">
     <img className="team-panorama" src="/media/team-photostrip.webp" srcSet="/media/team-photostrip-800.webp 800w, /media/team-photostrip.webp 2400w" sizes="100vw" width="4732" height="1527" alt="Чотири спільні кадри з фотобудки"/>
-    <div className="team-frames" aria-hidden="true">{[1,2,3,4].map(n=><img key={n} src={`/media/team-frame-${n}.webp`} alt=""/>)}</div>
+    <div className="team-frames" aria-hidden="true">{[1,2,3,4].map(n=><img key={n} src={`/media/team-frame-${n}.webp`} width="800" height="1033" alt=""/>)}</div>
    </div>
    <div className="team-editorial-copy" data-motion="text" data-delay="0.1">
     <div className="team-introduction"><h2 id="team-title">Наша команда.</h2><ActionButton tone="red" href="#contact">Зв’язатися з командою</ActionButton></div>

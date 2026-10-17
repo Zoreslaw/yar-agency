@@ -7,16 +7,16 @@ function response(){return {headers:{},setHeader(key,value){this.headers[key]=va
 const request=(body,extra={})=>({method:'POST',headers:{origin:'https://yar-agcy.space','content-type':'application/json','x-forwarded-for':'test-'+Math.random()},body,...extra});
 test('relevant fields, zero values, escaped HTML, reply-to and multiline text',()=>{
  const data=validateQuestionnaire(valid());assert.equal(data.answers.previous,'0');assert.equal(data.answers.crew,undefined);assert.equal(data.answers.scope,undefined);
- const mail=questionnaireEmail(data);assert.equal(mail.reply_to,'test@example.com');assert.match(mail.html,/&lt;img src=x&gt;/);assert.doesNotMatch(mail.html,/<img src=x>/);assert.match(mail.html,/Рядок один<br>Рядок два/);assert.match(mail.text,/Попередні продажі квитків:\n0/);
+ const mail=questionnaireEmail(data);assert.equal(mail.reply_to,'test@example.com');assert.match(mail.html,/&lt;img src=x&gt;/);assert.doesNotMatch(mail.html,/<img src=x>/);assert.match(mail.html,/Рядок один<br>Рядок два/);assert.match(mail.text,/Попередні виступи:\n0/);
 });
 test('all request formats preserve only the applicable answers',()=>{
- for(const type of ['Концерт','Тур / поїздка','Постійна співпраця','Інше']){
+ for(const type of ['Концерт','Тур / поїздка','Постійна співпраця','Окреме завдання','Інше']){
   const body=valid();body.type=type;body.answers.crew=5;
-  const data=validateQuestionnaire(body);assert.equal(data.answers.crew,type==='Тур / поїздка'?'5':undefined);assert.equal(data.answers.scope,type==='Постійна співпраця'?'Booking':undefined);
+  const data=validateQuestionnaire(body);assert.equal(data.answers.crew,type==='Тур / поїздка'?'5':undefined);assert.equal(data.answers.scope,undefined);
  }
 });
-test('rejects malformed required data, unsafe links, invalid counts and oversized descriptions',()=>{
- for(const edit of [body=>body.answers.email='bad',body=>body.answers.name='x\r\nBcc: x@y.com',body=>body.answers.idea=' ',body=>body.answers.idea='x'.repeat(5001),body=>body.answers.social='javascript:alert(1)',body=>body.answers.previous=-1,body=>body.answers.audience='200–100',body=>body.type='fake']){
+test('rejects malformed required data, header injection and oversized descriptions',()=>{
+ for(const edit of [body=>body.answers.email='bad',body=>body.answers.name='x\r\nBcc: x@y.com',body=>body.answers.idea=' ',body=>body.answers.idea='x'.repeat(5001),body=>body.type='fake']){
   const body=valid();edit(body);assert.throws(()=>validateQuestionnaire(body));
  }
 });
@@ -39,4 +39,16 @@ test('API fixes recipients server-side, reuses idempotency and does not report p
 });
 test('repeated requests from one IP are throttled',async()=>{
  let res;for(let i=0;i<6;i++){res=response();const req=request(valid());req.headers['x-forwarded-for']='rate-test';await handler(req,res);}assert.equal(res.code,429);assert.equal(res.headers['Retry-After'],'60');
+});
+
+test('free-form answers survive validation and email safely; unknown dates are optional',()=>{
+ const body=valid();Object.assign(body.answers,{social:'@myband\nШукай нас за назвою <гурт>\njavascript:alert(1)',previous:'Перший концерт',audience:'До 100, ще не знаємо',format:'Електронний дует',eventRole:'Фестиваль, розігрів',duration:'Два сети по 30 хв',dates:''});
+ const data=validateQuestionnaire(body);assert.equal(data.answers.social,body.answers.social);assert.equal(data.answers.previous,'Перший концерт');assert.equal(data.answers.dates,'');
+ const mail=questionnaireEmail(data);assert.match(mail.html,/@myband<br>/);assert.match(mail.html,/&lt;гурт&gt;/);assert.doesNotMatch(mail.html,/href="javascript:/);
+});
+test('management excludes event logistics; tour preserves ordered cities and crew description',()=>{
+ const body=valid();body.type='Постійна співпраця';Object.assign(body.answers,{goals:'Перший реліз',team:'Самостійно',route:'Варшава',project:'Мій проєкт',role:'Артист'});
+ const data=validateQuestionnaire(body);assert.equal(data.answers.goals,'Перший реліз');assert.equal(data.answers.team,'Самостійно');assert.equal(data.answers.city,undefined);assert.equal(data.answers.route,undefined);assert.equal(data.answers.project,'Мій проєкт');
+ body.type='Тур / поїздка';body.answers.route='Варшава\nМісто поза підказками\nВаршава';body.answers.crew='Четверо музикантів і технік';
+ const tour=validateQuestionnaire(body);assert.equal(tour.answers.route,body.answers.route);assert.equal(tour.answers.crew,body.answers.crew);assert.equal(tour.answers.goals,undefined);
 });
