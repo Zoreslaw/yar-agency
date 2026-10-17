@@ -1,8 +1,10 @@
 # YAR Agency
 
-React + Vite prototype. Original identity and photographs, monochrome backstage montage, artist services, Motion-driven content entrances, a service ticker, continuing collaboration including wuha, dressing-room team composition, local Oswald/Manrope typography, real contacts and a downloadable local brief.
+Music agency website: events in Poland, individual tasks and ongoing artist collaboration. React 19, Vite, local fonts, Ukrainian/Polish/English interface and a cooperation questionnaire delivered by email through a Vercel function and Resend.
 
-## Run
+## Development
+
+Node 24 and npm 11; use the committed `package-lock.json`.
 
 ```sh
 nvm use
@@ -10,45 +12,36 @@ npm ci
 npm run dev
 ```
 
-## Build / Vercel
+Vite serves the frontend. It does not run `/api/questionnaire`; use the Vercel development environment or a deployment to exercise the server integration. Server configuration is documented in [.env.example](.env.example). Keep actual values outside Git.
+
+## Validation and build
 
 ```sh
 npm run check
+npm test
 npm run build
 npm run preview
 ```
 
-Import `Zoreslaw/yar-agency` from GitHub into your Vercel account. Use the repository root, Vite and Node 24.x. `vercel.json` sets install `npm ci`, build `npm run check && npm run build`, output `dist`. The site requires no environment variables, database or backend. See docs/DEPLOYMENT.md for connection, previews, production and rollback. Account-side connection is still required.
+`npm test` exercises server validation and email delivery behavior with a mocked provider; it sends no real emails. `npm run check` validates required assets, metadata and package/lock consistency. GitHub Actions runs these checks and builds branches and pull requests.
 
-## Open without a server
+`npm run standalone` creates `dist/preview.html` after a build. Keep the `media`, `assets`, `fonts` and `icons` folders alongside it. This is a local review file; email submission requires the deployed API. Lazy-loaded components still require a browser that permits module loading from the preview's location.
 
-After `npm run build`, run `npm run standalone`. Open `dist/preview.html` in a browser. Keep its sibling `media` and `assets` folders with it. This preview inlines the compiled JavaScript and CSS and uses relative media paths; the normal Vite output remains unchanged for Vercel.
+## Publication
 
-## Content / assets
+Canonical site: [www.yar-agcy.space](https://www.yar-agcy.space/). Vercel builds from the repository root; `main` is the production branch. See [deployment instructions](docs/DEPLOYMENT.md) for required server variables, indexing and release checks.
 
-- `src/main.jsx`: sections, draft Ukrainian copy, gallery and brief.
-- `src/style.css`: responsive composition and four brand colors.
-- `src/StageLighting.jsx`: photographic entrance observer, reduced-motion and visibility guards, persistent motion preference.
-- `public/media/backstage-rig*.webp`, `stage-preparation*.webp`: retired Pexels prototype assets; no longer rendered. `node scripts/optimize-backstage.mjs` can regenerate these archived derivatives.
-- `public/media/stage-truss.webp`, `stage-spotlight.webp`: retired generated prototype hardware; no longer rendered.
-- `public/media/team-reference*.webp`: retired stock composition reference; no longer rendered.
-- `src/assets.json`: supplied image mapping.
-- `source-assets/`: untouched copies of the supplied photographs (ignored by Git). `public/media/*.webp`: responsive 800/1800px copies. Visual monochrome/cropping is CSS-only. Source files in Downloads are untouched.
-- `public/media/backstage.mp4`: existing 24-second stock montage (Pexels 9005825 / 8513955 / 8197915), no strobes from rejected clips 4/7, no audio. Not presented as footage of a YAR event.
-- `public/media/mouth-source.png`: emblem from the user's existing YAR mockup, https://yar-agcy.lovable.app/assets/yar-mouth-9bXz7I9e.png.
-- `public/media/logo-source.png`: original mockup logo retained for reference; visible logo uses user-supplied IMG_0384.PNG with SVG viewport and alpha mask, not a redrawn mark.
-- Fonts: self-hosted open-source Manrope and League Spartan via Fontsource. Manrope is a temporary Cyrillic substitute for the unavailable Gotham font. OFL licenses are included in public/licenses.
-- `docs/DIRECTION.md`: concept, references, design decisions, pending company facts.
-- `npm run import-assets -- /absolute/folder`: re-import copies from a folder.
+The HTML includes canonical, Open Graph, sharing image, Organization data and browser/mobile icons. `public/robots.txt` and `public/sitemap.xml` describe the public pages. Branch builds with a non-production `VERCEL_ENV` receive `noindex,nofollow`; production pages are indexable. The local standalone preview and error page remain excluded from indexing.
 
-This is a design proposal, not approved company copy. No fabricated roster, dates, metrics, testimonials or contact addresses. Services and email/Instagram are sourced from the supplied service PDF; final obligations and company wording need approval. Team names and wuha relationship were confirmed by the user. A genuine shared team photograph is still needed if portraits are added. The form downloads a text brief and sends no network request. Prototype is marked noindex.
+`npm run brand-assets` regenerates browser/mobile icons and the sharing image from the original supplied mark. Source photographs stay unchanged; see [asset provenance](docs/ASSETS.md). Responsive derivatives in `public/media` are required for clean builds.
 
-Photo originals are retained in source-assets. WebP derivatives are used in the build. Before public launch, approve draft text and supply genuine team imagery if desired. Mobile UI crops are CSS-only, source images remain intact.
+## Project structure
 
-## Working with AI
+- `src/main.jsx`: page composition and navigation.
+- `src/CooperationForm.jsx`, `src/CooperationModal.jsx`: cooperation questionnaire.
+- `src/i18n.jsx`, `src/locales/messages.json`: language selection and interface translations.
+- `api/questionnaire.js`, `server/questionnaire-email.js`: server validation and email delivery.
+- `public/privacy.html`: privacy policy.
+- `docs/DIRECTION.md`, `docs/HANDOFF.md`, `docs/ASSETS.md`: design intent, current state and provenance.
 
-Read [AGENTS.md](AGENTS.md) and [current handoff](docs/HANDOFF.md) first. They capture user preferences, design constraints, asset handling and unfinished business decisions. GitHub Copilot points to the same instructions. Future changes should use feature branches and PR previews. Never list AI agents as contributors or add Co-authored-by trailers.
-
-GitHub Actions verifies configuration/media and builds every branch push and pull request, retaining the built site for seven days. Vercel also runs the checks before each deployment. Node 24 is pinned through .nvmrc and package.json. npm/package-lock.json is the only package-manager setup.
-
-Repository MIT license covers code; company artwork, photographs, stock footage and fonts retain their respective rights/licenses (see docs/ASSETS.md and public/licenses).
+Code is covered by the repository MIT license. Company artwork, photographs, footage and fonts retain their respective rights and licenses; font and dependency notices are in `public/licenses`.

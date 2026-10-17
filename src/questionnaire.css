@@ -6,7 +6,7 @@
 .request-rail{background:var(--red);color:var(--cream);padding:32px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:35px;position:relative}
 .request-rail:after{content:'';position:absolute;inset:0 -5px 0 auto;width:6px;background:var(--red);clip-path:polygon(0 0,100% 2%,30% 9%,90% 18%,20% 26%,100% 32%,25% 44%,90% 54%,20% 63%,100% 72%,35% 83%,85% 94%,0 100%)}
 .step-kicker{font-size:10px;font-weight:650;letter-spacing:.14em}
-.rail-headline{font-family:var(--display-font);font-size:35px;line-height:1.18;letter-spacing:-.025em;margin-top:0}
+.rail-headline{font-family:var(--display-font);font-size:27px;line-height:1.18;letter-spacing:-.025em;margin-top:0}
 .rail-headline em{font-style:normal;color:var(--yellow)}
 .request-rail ol{list-style:none;padding:0;margin:0;display:grid;gap:22px}
 .request-rail li{display:flex;align-items:center;gap:14px;font-size:13px;color:#fffbd499}

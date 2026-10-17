@@ -1,22 +1,31 @@
-# Vercel
+# Deployment
 
-## Import once
-1. In Vercel, Add New → Project → import Zoreslaw/yar-agency.
-2. Root directory: repository root (`.`). Framework: Vite. Node: 24.x.
-3. Configuration is tracked in vercel.json: install `npm ci`, build `npm run check && npm run build`, output `dist`.
-4. No environment variables or backend needed. Choose the destination account/team and deploy.
+## Vercel configuration
 
-Production branch: main. After connecting Git, main pushes generate production builds and branches/PRs can generate preview deployments. Use previews for review before merging. GitHub Actions separately validates media/configuration and builds on main and pull requests.
+Repository: Zoreslaw/yar-agency. Root: `.`. Framework: Vite. Runtime: Node 24.x, npm 11. Install: `npm ci`. Build: `npm run check && npm run build`. Output: `dist`. Production branch: `main`.
 
-Repository configuration is ready; an account-side Vercel project, domain, or Git integration is not created by these files.
+The public domain currently redirects `https://yar-agcy.space/` to `https://www.yar-agcy.space/` (verified 17 October 2026). Canonical URLs, sharing metadata, structured data and sitemap use the www origin. If the primary domain changes, update those files and `package.json` together.
 
-## Before actual launch
-- Confirm business copy and contact destination. Brief currently downloads locally.
-- Confirm permissions for company photos/branding; retain stock/font provenance.
-- Replace temporary font if licensed Gotham is supplied.
-- Review desktop and mobile, dialogs, keyboard access, paused/reduced-motion states.
-- Remove prototype label and noindex only after company approval; add actual social metadata/domain then.
+## Questionnaire
 
-No SPA rewrites are needed: the current site uses one page with hash anchors. Do not add rewrites that mask missing asset errors.
+Vercel runs `api/questionnaire.js`. Set `RESEND_API_KEY`, `EMAIL_FROM`, `EMAIL_TO` in the appropriate deployment environments, following `.env.example`. Never expose these through `VITE_` variables. Earlier setup and verification are recorded in HANDOFF.md; this revision does not change account settings or redeploy them.
 
-Official guides: https://vercel.com/docs/frameworks/frontend/vite and https://vercel.com/docs/git .
+Vite dev/preview serves only the frontend. API tests mock Resend. A real end-to-end check requires one controlled submission on the deployed site and confirmation of receipt; provider acceptance alone does not prove inbox delivery. Current throttle is per process, not a global request limit.
+
+## Indexing and static files
+
+Production HTML allows indexing. `scripts/finalize-build.mjs` applies noindex to main/privacy pages and disallows robots for non-production Vercel builds. The standalone preview and 404 page have noindex independently. Keep actual production indexability under review with response headers after deployment.
+
+The favicon set and social card derive from the original supplied PNG via SVG viewport; regenerate with `npm run brand-assets`. Stable media/icon URLs revalidate by default. Only hashed `/assets/` files receive year-long immutable caching. Security headers cover MIME sniffing, framing, referrer disclosure and unused camera/microphone/geolocation permissions.
+
+`public/404.html` is Vercel's static error page. No catch-all SPA rewrite is used: missing pages/assets must retain an actual 404 response.
+
+## Release checks
+
+1. Run `npm ci`, `npm run check`, `npm test`, `npm run build`.
+2. Inspect desktop and 320px mobile, navigation, language selection, keyboard focus, questionnaire validation/error/success and reduced motion.
+3. On the deployed domain, verify HTTPS and the www redirect; main, policy, icons, sharing image, robots and sitemap return the intended content/status; missing paths return 404; production has no `X-Robots-Tag: noindex`.
+4. Make one controlled questionnaire submission and verify delivery to configured recipients.
+5. Inspect the live sharing card and register/submit the sitemap in Google Search Console if not already done. Sharing services may cache older metadata.
+
+Rollback uses Vercel's previous deployment or a Git revert. Repository configuration does not itself change Vercel account settings.

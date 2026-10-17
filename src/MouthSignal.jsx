@@ -1,7 +1,9 @@
+import {useLanguage} from './i18n.jsx';
 import React, {useEffect, useRef} from 'react';
 
 // Local signal interference: keep the actual artwork, disturb the full silhouette without cropping its edges.
 export function MouthSignal() {
+ const {t} = useLanguage();
  const host = useRef(null), canvas = useRef(null);
  useEffect(() => {
   const el = host.current, output = canvas.current, ctx = output.getContext('2d');
@@ -104,7 +106,7 @@ export function MouthSignal() {
   };
  }, []);
  return <div className="mouth signal-mouth" ref={host}>
-  <img src="/media/mouth-no-logo.webp" alt="Відкритий рот із висунутим язиком" loading="lazy"/>
+  <img src="/media/mouth-no-logo.webp" alt={t("Відкритий рот із висунутим язиком")} loading="lazy"/>
   <canvas ref={canvas} aria-hidden="true"/>
  </div>;
 }

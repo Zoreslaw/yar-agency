@@ -1,3 +1,4 @@
+import {useLanguage} from './i18n.jsx';
 import React, {useState} from 'react';
 import {ActionButton} from './components/Buttons';
 import './service-stories.css';
@@ -21,15 +22,16 @@ const services = [
 ];
 
 function ServiceDisclosure({service}) {
+ const {t} = useLanguage();
  const [open,setOpen]=useState(false);
  const triggerId=`${service.id}-toggle`;
  const panelId=`${service.id}-details`;
  return <article className={`service-disclosure${open?' is-open':''}`} aria-labelledby={`${service.id}-title`}>
   <h3 id={`${service.id}-title`}>
    <button className="service-disclosure-trigger" id={triggerId} type="button" aria-expanded={open} aria-controls={panelId} onClick={()=>setOpen(value=>!value)}>
-    <span className="service-disclosure-title">{service.title}</span>
+    <span className="service-disclosure-title">{t(service.title)}</span>
     <span className="service-disclosure-affordance" aria-hidden="true">
-     <span className="service-disclosure-label">{open?'Згорнути':'Детальніше'}</span>
+     <span className="service-disclosure-label">{open?t("Згорнути"):t("Детальніше")}</span>
      <span className="service-disclosure-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16"/><path className="service-disclosure-plus" d="M12 4v16"/></svg></span>
     </span>
    </button>
@@ -37,8 +39,8 @@ function ServiceDisclosure({service}) {
   <div className="service-disclosure-panel" id={panelId} role="region" aria-labelledby={triggerId} aria-hidden={!open} inert={!open}>
    <div className="service-disclosure-clip">
     <div className="service-disclosure-content">
-     <p className="story-lead">{service.text}</p>
-     <ul className="story-tasks">{service.tasks.map(task=><li key={task}>{task}</li>)}</ul>
+     <p className="story-lead">{t(service.text)}</p>
+     <ul className="story-tasks">{service.tasks.map(task=><li key={task}>{t(task)}</li>)}</ul>
     </div>
    </div>
   </div>
@@ -46,8 +48,9 @@ function ServiceDisclosure({service}) {
 }
 
 export function ServiceStories({enabled,onDiscuss}) {
+ const {t} = useLanguage();
  return <div className={`service-stories${enabled?'':' service-stories--static'}`}>
   <div className="service-disclosures">{services.map(service=><ServiceDisclosure key={service.id} service={service}/>)}</div>
-  <div className="stories-outro"><ActionButton tone="red" onClick={onDiscuss}>Обговорити задачу</ActionButton></div>
+  <div className="stories-outro"><ActionButton tone="red" onClick={onDiscuss}>{t("Обговорити задачу")}</ActionButton></div>
  </div>;
 }

@@ -1,6 +1,6 @@
 # Footer and privacy — current state
 
-Updated 17 October 2026. User requested the final publication text and removal of draft/prototype wording. Public policy: `public/privacy.html`. Supersedes the earlier draft checklist; historical revision notes elsewhere remain history.
+Updated 17 October 2026. User requested the final publication text and removal of draft/prototype wording. Public policy: `/privacy.html` (source: root `privacy.html`, a Vite entry). Supersedes the earlier draft checklist; historical revision notes elsewhere remain history.
 
 ## Confirmed controller and contacts
 

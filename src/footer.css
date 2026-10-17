@@ -39,7 +39,7 @@
 @media(max-width:800px){.site-footer .footer-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}.footer-identity{grid-column:1/-1;display:flex;align-items:center}}
 @media(max-width:650px){
  .stage-world .contact{padding:52px 6% 44px;display:block}
- .contact-main h2{font-size:64px;line-height:1.05}
+ .contact-main h2{font-size:clamp(40px,11.5vw,62px);line-height:1.12}
  .contact-invitation{font-size:13px;max-width:320px;margin-bottom:26px}
  .contact .contact-questionnaire-action{margin-bottom:32px}
  .contact-alternatives>a{font-size:16px}

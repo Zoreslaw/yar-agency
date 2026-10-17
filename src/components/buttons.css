@@ -6,7 +6,7 @@
  position:relative; isolation:isolate; display:inline-flex; align-items:center; justify-content:center;
  gap:10px; width:fit-content; max-width:100%; min-height:56px; padding:17px 26px;
  border:0; border-radius:0; background:transparent; color:var(--action-ink);
- font-family:'Manrope Variable',sans-serif; font-size:15px; font-weight:700;
+ font-family:'Montserrat Variable',sans-serif; font-size:15px; font-weight:700;
  letter-spacing:-.035em; line-height:1.4; text-align:center; text-decoration:none;
  transform:rotate(var(--action-angle)); transition:transform .12s ease,color .12s ease;
 }
@@ -58,7 +58,8 @@
 .yar-control--icon svg {width:24px; height:24px; flex-shrink:0}
 
 /* Placement belongs to the page; button appearance stays above. */
-.page-hero-action {margin-top:0}
+.page-hero-action {margin-top:0; flex-shrink:0; height:auto; max-width:calc(100% - 5px)}
+.page-hero-action .yar-action__label {white-space:normal; text-wrap:balance; overflow-wrap:normal}
 .case-gallery-action {margin-top:22px}
 .team-contact-action {margin-top:24px}
 .contact-questionnaire-action {margin:14px 0 5px}

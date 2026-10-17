@@ -5,15 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "vite build",
+    "build": "vite build && node scripts/finalize-build.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "import-assets": "node scripts/import-assets.mjs",
     "standalone": "node scripts/standalone.mjs",
-    "check": "node scripts/check-project.mjs"
+    "check": "node scripts/check-project.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "brand-assets": "node scripts/brand-assets.mjs"
   },
   "dependencies": {
-    "@fontsource-variable/league-spartan": "^5.3.0",
-    "@fontsource-variable/manrope": "^5.3.0",
+    "@fontsource-variable/montserrat": "^5.3.0",
     "@mantine/core": "^9.7.2",
     "@mantine/dates": "^9.7.2",
     "@mantine/hooks": "^9.7.2",
@@ -28,6 +29,15 @@
     "vite": "^7.1.0"
   },
   "engines": {
-    "node": "24.x"
-  }
+    "node": "24.x",
+    "npm": "11.x"
+  },
+  "description": "YAR Agency — music events in Poland and artist collaboration.",
+  "homepage": "https://www.yar-agcy.space/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zoreslaw/yar-agency.git"
+  },
+  "license": "MIT",
+  "packageManager": "npm@11.19.0"
 }

@@ -77,3 +77,10 @@ All ten homepage photo instances now use CSS grayscale(1), without sepia, decora
 
 ## Team photostrip — 16 October 2026
 User supplied codex-clipboard-2c52e09b-e8db-4f3e-be9c-c704e100e1a4.jpg (4732×1527), the actual four-frame team photograph from the layout reference. Unchanged original preserved in ignored source-assets/team-photostrip.jpg. scripts/optimize-assets.mjs --team-strip produces 2400/800px WebP strips and four 800px quarter crops for the mobile 2×2 layout. Original printed black divisions remain; no added frames, retouching or generated imagery. Umbrella photograph is no longer used in this section.
+
+## Site identity assets — 17 October 2026
+`npm run brand-assets` reads the unchanged user-supplied `public/media/IMG_0384.PNG`. An SVG viewport identical to the site logo (150 76 555 277) crops transparent canvas; no tracing, replacement lettering or retouching. The mark is placed on brand burgundy to generate favicon.svg/favicon.ico, 32/180/192/512px PNG icons and a 1200×630 JPEG sharing card. Script: scripts/brand-assets.mjs. No new artwork source or dependency.
+
+
+## Montserrat typography — 17 October 2026
+Local upright variable Montserrat (100–900) from @fontsource-variable/montserrat 5.3.0, Cyrillic, Cyrillic-ext, Latin and Latin-ext WOFF2 subsets copied unchanged to public/fonts. CSS unicode ranges copied from the package; includes Ukrainian letters, Polish diacritics and hryvnia. SIL OFL retained in public/licenses/Montserrat-OFL.txt. Source: https://github.com/google/fonts/tree/main/ofl/montserrat . No media originals changed. Previous Oswald font files/license remain archived; no active Oswald/Manrope/League Spartan references.

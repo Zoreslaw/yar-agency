@@ -1,0 +1,14 @@
+{
+  "id": "/",
+  "name": "YAR Agency",
+  "short_name": "YAR",
+  "lang": "uk",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#FFFBD4",
+  "theme_color": "#991A1E",
+  "icons": [
+    {"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
+  ]
+}
