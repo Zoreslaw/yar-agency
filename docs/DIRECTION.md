@@ -234,3 +234,6 @@ User selected Montserrat and asked to preserve the layout across Ukrainian, Poli
 
 ## Responsive header — 17 October 2026
 Use a compact disclosure through 900px, including tablets. Hamburger turns into a close icon; navigation expands vertically in 260ms with a short opacity transition. Open header and navigation share solid brand ink, with large single-column links. Closed hero header stays transparent; scrolled header retains translucent blur. Desktop keeps inline links. Language control uses a globe, current code and chevron, with full native language names and a selected indicator. Only one panel opens at a time. Preserve 44px controls, Escape/outside/focus dismissal, inert hidden links, focus return and reduced-motion behavior. No new dependency or media.
+
+## Footer alignment — 17 October 2026
+Use three equal columns with consistent gaps above 760px. Keep the original mark vertically centred in its column and align agency/contact labels at the top. At 760px and below, centre the logo above two equal link columns and centre the policy row. Hide trailing contact arrows through 900px to preserve room for actual contact text; leading icons remain. Content and links unchanged.

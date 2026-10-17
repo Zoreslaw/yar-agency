@@ -19,9 +19,9 @@
 .contact-alternatives>a:focus-visible{outline-color:var(--yellow)}
 .contact .contact-brand{align-self:center;padding:0}
 .site-footer{padding:48px 6% 20px}
-.site-footer .footer-top{grid-template-columns:minmax(0,1.4fr) minmax(0,.8fr) minmax(0,1fr);gap:6%;padding-bottom:36px}
-.footer-identity,.footer-contacts{min-width:0}
-.footer-identity{align-self:start}
+.site-footer .footer-top{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,64px);padding-bottom:36px}
+.footer-identity,.footer-navigation,.footer-contacts{min-width:0}
+.footer-identity{align-self:center}
 .site-footer .footer-brand{display:block;margin:0}
 .site-footer .footer-brand .logo{width:120px}
 .site-footer .footer-label{font-size:10px;line-height:1.5;color:var(--red);margin-bottom:12px;letter-spacing:.08em}
@@ -36,7 +36,6 @@
 .footer-meta{display:flex;justify-content:flex-end;align-items:center;gap:16px 32px;border-top:1px solid #1d223d30;padding-top:14px;font-size:11px;line-height:1.7}
 .footer-meta>a{display:flex;align-items:center;flex-wrap:wrap;gap:0 4px;min-height:44px}
 .footer-meta>a:hover{text-decoration:underline;text-underline-offset:4px}
-@media(max-width:800px){.site-footer .footer-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}.footer-identity{grid-column:1/-1;display:flex;align-items:center}}
 @media(max-width:650px){
  .stage-world .contact{padding:52px 6% 44px;display:block}
  .contact-main h2{font-size:clamp(40px,11.5vw,62px);line-height:1.12}
@@ -49,7 +48,7 @@
  .contact-brand .mouth{width:88px;flex-shrink:0}
  .contact-brand .brand-question{font-size:19px;max-width:145px;text-align:left;line-height:1.2}
  .site-footer{padding:32px 6% 16px}
- .site-footer .footer-top{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:26px 18px;padding-bottom:22px}
+ .site-footer .footer-top{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 18px;padding-bottom:22px}
  .site-footer .footer-brand .logo{width:90px}
  .site-footer .footer-navigation a,.footer-contacts>a{font-size:12px}
  .footer-contacts>a{gap:8px}
@@ -59,3 +58,13 @@
  .footer-meta>a{font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){.contact-alternatives .channel-icon,.contact-alternatives>a>svg,.footer-contacts>a>svg:last-child{transition:none;transform:none}}
+
+/* Equal columns share a top line; the original mark balances the taller links. */
+.site-footer .footer-contacts>a{max-width:260px}
+@media(max-width:900px){.site-footer .footer-contacts>a>svg:last-child{display:none}}
+@media(max-width:760px){
+ .site-footer .footer-top{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 18px}
+ .site-footer .footer-identity{grid-column:1/-1;justify-self:center;align-self:start}
+ .site-footer .footer-brand .logo{width:100px}
+ .site-footer .footer-meta{justify-content:center;align-items:center;text-align:center}
+}
