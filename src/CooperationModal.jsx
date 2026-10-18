@@ -1,5 +1,5 @@
 import {useLanguage} from './i18n.jsx';
-import React from 'react';
+import React, {useState} from 'react';
 import {IconButton} from './components/Buttons.jsx';
 import {MantineProvider, Modal, createTheme} from '@mantine/core';
 import {DatesProvider} from '@mantine/dates';
@@ -17,9 +17,10 @@ const theme=createTheme({fontFamily:'Montserrat Variable, sans-serif',defaultRad
 export default function CooperationModal({opened,onClose,onExit,initialType,logo}) {
  const {t, language} = useLanguage();
  const reduced=useReducedMotion(), mobile=useMediaQuery('(max-width:900px)');
+ const [calendarOpen,setCalendarOpen]=useState(false);
  return <MantineProvider theme={theme}><DatesProvider settings={{locale:language,firstDayOfWeek:1}}>
   <Modal.Root opened={opened} onClose={onClose} returnFocus={false} onExitTransitionEnd={onExit} keepMounted fullScreen={mobile} centered size={1040}
-   transitionProps={{duration:reduced?0:140}}
+   transitionProps={{duration:reduced?0:140}} closeOnEscape={!calendarOpen}
    classNames={{content:'yar-modal-content',header:'yar-modal-header',body:'yar-modal-body',title:'yar-modal-title'}}>
    <Modal.Overlay backgroundOpacity={.75} blur={5}/>
    <Modal.Content>
@@ -27,7 +28,7 @@ export default function CooperationModal({opened,onClose,onExit,initialType,logo
      <Modal.Title><span aria-hidden="true">{logo}</span><span className="request-title-text">{t("Співпраця")}</span></Modal.Title>
      <IconButton icon="close" label={t("Закрити анкету")} className="request-close" onClick={onClose}/>
     </Modal.Header>
-    <Modal.Body><CooperationForm initialType={initialType} active={opened}/></Modal.Body>
+    <Modal.Body><CooperationForm initialType={initialType} active={opened} onCalendarOpenChange={setCalendarOpen}/></Modal.Body>
    </Modal.Content>
   </Modal.Root>
  </DatesProvider></MantineProvider>;

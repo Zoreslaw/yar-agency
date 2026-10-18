@@ -1,4 +1,7 @@
 /* Editorial actions have imprint/poster variants; utility controls stay quiet. */
+button,.yar-action,.yar-control {
+ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none;
+}
 .yar-action {
  --action-fill:var(--cream); --action-ink:var(--red);
  --action-angle:-.7deg; --action-shadow:5px; --action-shadow-ink:var(--ink); --action-hover-shadow-ink:var(--ink);

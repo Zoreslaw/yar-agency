@@ -1210,5 +1210,17 @@
   "Як YAR Agency обробляє дані заявок, листування та відвідувачів сайту.": {
     "en": "How YAR Agency processes enquiry, correspondence and website visitor data.",
     "pl": "Jak YAR Agency przetwarza dane zapytań, korespondencji i odwiedzających stronę."
+  },
+  "Бажані дати": {
+    "en": "Preferred dates",
+    "pl": "Preferowane daty"
+  },
+  "Готово": {
+    "en": "Done",
+    "pl": "Gotowe"
+  },
+  "Обери одну або кілька дат. Натисни дату ще раз, щоб прибрати її. Якщо ще не визначився, залиш поле порожнім.": {
+    "en": "Choose one or more dates. Tap a date again to remove it. Leave this blank if you are unsure.",
+    "pl": "Wybierz jedną lub kilka dat. Naciśnij datę ponownie, aby ją usunąć. Jeśli jeszcze nie wiesz, pozostaw pole puste."
   }
 }

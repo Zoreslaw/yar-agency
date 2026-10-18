@@ -23,3 +23,21 @@
 .backstage-page .format-example .example-photo{width:100%;margin:0}
 .backstage-page .mirror-portrait{width:100%;margin-inline:auto;transform:none}
 .backstage-page .service-stories .story-photo{cursor:default}
+
+/* The desktop route has no clear destination in the stacked phone layout.
+   Let the overlapping photographs reserve their own height at every width. */
+@media(max-width:650px){
+ .backstage-route{display:none}
+ .services .passage-frame{padding-bottom:40px}
+ .backstage-prints{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  align-items:start;
+  height:auto;
+  max-width:480px;
+  margin-top:28px;
+ }
+ .backstage-prints .pinned-print{position:relative;inset:auto;width:auto;grid-row:1}
+ .backstage-prints .print-people{grid-column:1 / 9}
+ .backstage-prints .print-live{grid-column:6 / 13;margin-top:48%}
+}

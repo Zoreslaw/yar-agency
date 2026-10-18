@@ -213,3 +213,17 @@ Browser checked all three languages at 320, 390, ~768, 900, 902, ~1024 and 1440:
 User requested minimal additional QA and pushing both current work and footer correction to main. Current presentation/header revision pushed as 7f9d153. Footer CSS now uses equal desktop thirds and equal mobile halves beneath a centred logo (breakpoint 760px), consistent gaps, aligned link headings and bounded contact rows. check/build/standalone and diff whitespace passed. Browser inspection could not finish: CUA timed out and then reported no available browsers. No visual pass claimed for this footer revision; no repeated QA matrix run. No media/content changes.
 
 Footer position correction — 17 October 2026: user requested a quick follow-up. Logo now aligns to the top on desktop/tablet; mobile retains the centred logo and centres agency/contact groups within equal columns. Scoped CSS only. No new browser inspection attempted; previous browser session was unavailable. Check/build and whitespace validation run before push.
+
+
+## Mobile introduction — 18 October 2026
+Scoped photographs.css correction on feature/mobile-intro-layout. Hide the decorative desktop route through 650px: its section-relative path crossed the stacked text/photo composition. Replace fixed-height absolute mobile photo positioning with an overlapping grid that reserves the actual image height; keep 40px below the photos. Desktop, source media, copy and entrance behavior unchanged. Browser inspected Ukrainian at 320/390/650 and desktop 1440; no document overflow, both photos loaded and contained. Polish/English at 320 have no document or heading overflow. check/build/standalone and diff whitespace pass, with existing dependency use-client warnings. No commit, push or deployment. Pre-existing questionnaire changes preserved.
+
+
+## Mobile team action — 18 October 2026
+Branch feature/mobile-team-action. TeamSection.jsx moves the single contact link after the details in document order; scoped CSS grid retains its desktop position beneath the heading and stacks it last through 650px. Browser inspected at 1440, 390 and 320px; no document overflow, 320px team text fits, contact link updates the contact anchor. Pre-existing questionnaire/button/photo edits preserved. Local only.
+
+## Questionnaire touch controls and dates — 18 October 2026
+CooperationForm.jsx keeps route suggestions inside the dialog and replaces their custom scroll area with native overflow. Shared button styles suppress text selection; format labels and detail toggles receive the same treatment. Dates now use multiple selection (user confirmed nonconsecutive dates), empty arrays, comma-separated review/email values and a calendar modal with localized Done. CooperationModal tracks the calendar's lifetime so Escape closes the calendar without closing the questionnaire. No new dependency or backend changes. Unrelated mobile introduction/team changes in the shared checkout are preserved.
+
+## Mobile footer refinement — 18 October 2026
+Local feature/mobile-footer-layout preserves pre-existing questionnaire/team/introduction edits. Scoped footer.css replaces the <=760px equal centred columns with left-aligned navigation and a content-sized contact column beneath the centred original mark. Browser inspected at actual CSS widths 320/390/1440; all three locales at 320 have no detected footer text clipping or horizontal document overflow. Keyboard focus checked on footer links. check/build/standalone pass with existing dependency use-client warnings. No commit, push or deployment.

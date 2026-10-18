@@ -87,6 +87,7 @@
 .request-calendar-header{background:var(--cream);padding:14px 16px}
 .request-calendar-title{font-family:var(--display-font);font-size:24px;line-height:1.2}
 .request-calendar .mantine-Modal-close{flex-shrink:0;color:var(--ink);width:32px;height:32px}
+.request-calendar .request-calendar-done{width:auto;min-width:64px;min-height:44px;padding:8px;font-size:13px;font-weight:650;border:1px solid currentColor}
 
 /* The burgundy spine continues through the header behind the original mark. */
 @media(min-width:901px){
@@ -114,6 +115,10 @@
 .request-success>span .interface-icon{width:40px;height:40px}
 
 .route-point{display:flex;align-items:flex-end;gap:10px;margin-bottom:12px}
+/* Keep suggestions inside the dialog's scroll lock and use native touch scrolling. */
+.request-city-dropdown{max-height:min(220px,35dvh);overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;-webkit-user-select:none;user-select:none;background:var(--cream);color:var(--ink)}
+.request-city-dropdown [role="option"]{min-height:44px;display:flex;align-items:center;font-size:16px}
+.format-options label,.request-extra summary{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .route-point .kit-field{flex:1;min-width:0;margin-bottom:0}
 .route-point>.yar-control{flex-shrink:0;min-width:44px;min-height:48px}
 .request-extra{margin:12px 0 24px}

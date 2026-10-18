@@ -5,7 +5,6 @@ import {ActionButton, UtilityButton} from './components/Buttons.jsx';
 import {FormProvider, useForm, useFormContext, useWatch, useController} from 'react-hook-form';
 import {TextInput, Textarea, Autocomplete} from '@mantine/core';
 import {DatePickerInput} from '@mantine/dates';
-import {useMediaQuery} from '@mantine/hooks';
 import dayjs from 'dayjs';
 
 import {types, typeTitles, commonFields, labels, fieldsByType} from './questionnaire-schema.js';
@@ -18,7 +17,7 @@ const prompts={
  'Окреме завдання':{title:'Про твоє завдання.',label:'З чим потрібна допомога?',hint:'Наприклад, промоція, візуальна комунікація або фото / відео. Опиши бажаний результат своїми словами.'},
  'Інше':{title:'Розкажи про ідею.',label:'Що хочеш обговорити?',hint:'Готовий план не потрібен. Розкажи, що задумав або в чому ще не визначився.'}
 };
-const formatDates=range=>[...new Set((range||[]).filter(Boolean).map(date=>dayjs(date).format('DD.MM.YYYY')))].join(' — ');
+const formatDates=dates=>[...new Set((dates||[]).filter(Boolean).map(date=>dayjs(date).format('DD.MM.YYYY')))].join(', ');
 function Field({name,label=labels[name],required=false,kind='input',hint,maxLength=300,rules={},...props}) {
  const {t} = useLanguage();
  const {control}=useFormContext();
@@ -27,12 +26,13 @@ function Field({name,label=labels[name],required=false,kind='input',hint,maxLeng
  if(kind==='textarea')return <Textarea {...common} maxLength={maxLength}/>;
  return <TextInput {...common} maxLength={maxLength}/>;
 }
-function DateField(){
+function DateField({onCalendarOpenChange}){
  const {t} = useLanguage();
- const {control}=useFormContext(),mobile=useMediaQuery('(max-width:900px)');
- const {field,fieldState}=useController({name:'dateRange',control,rules:{validate:value=>!value?.[0]||Boolean(value?.[1])||t("Оберіть кінець періоду або натисніть ту саму дату вдруге. Якщо ще не визначився — очисть поле.")}});
- return <DatePickerInput type="range" allowSingleDateInRange clearable clearButtonProps={{'aria-label':t("Очистити дати")}} label={t(labels.dates)} description={t("Необов’язково. Якщо ще не визначився, залиш поле порожнім.")} placeholder={t("Обрати дату або період")} value={field.value} onChange={field.onChange} onBlur={field.onBlur} ref={field.ref} error={fieldState.error?.message}
- valueFormat="DD.MM.YYYY" dropdownType={mobile?'modal':'popover'} modalProps={{title:t("Обери дати"),centered:true,withCloseButton:true,classNames:{content:'request-calendar',header:'request-calendar-header',title:'request-calendar-title'},closeButtonProps:{'aria-label':t("Закрити календар")}}} popoverProps={{withinPortal:true}}
+ useEffect(()=>()=>onCalendarOpenChange(false),[onCalendarOpenChange]);
+ const {control}=useFormContext();
+ const {field,fieldState}=useController({name:'dateRange',control});
+ return <DatePickerInput type="multiple" closeOnChange={false} clearable clearButtonProps={{'aria-label':t("Очистити дати")}} label={t(labels.dates)} description={t("Обери одну або кілька дат. Натисни дату ще раз, щоб прибрати її. Якщо ще не визначився, залиш поле порожнім.")} placeholder={t("Обери дати")} value={field.value} onChange={field.onChange} onBlur={field.onBlur} ref={field.ref} error={fieldState.error?.message}
+ valueFormat="DD.MM.YYYY" dropdownType="modal" onClick={()=>onCalendarOpenChange(true)} modalProps={{title:t("Обери дати"),centered:true,withCloseButton:true,onExitTransitionEnd:()=>onCalendarOpenChange(false),classNames:{content:'request-calendar',header:'request-calendar-header',title:'request-calendar-title'},closeButtonProps:{icon:t("Готово"),'aria-label':t("Готово"),className:'request-calendar-done'}}}
  previousLabel={t("Попередній місяць")} nextLabel={t("Наступний місяць")} ariaLabels={{monthLevelControl:t("Обрати місяць"),yearLevelControl:t("Обрати рік")}} className="kit-field" size="sm"/>;
 }
 const citySuggestions=['Варшава','Краків','Познань','Вроцлав','Гданськ','Київ','Львів','Берлін','Прага'];
@@ -45,7 +45,7 @@ function RouteField(){
  useEffect(()=>{if(pendingFocus.current!==null){inputs.current[pendingFocus.current]?.focus();pendingFocus.current=null;}},[field.value]);
  const update=next=>field.onChange(next.join('\n'));
  return <fieldset className="request-section route-field"><legend>{t("Маршрут")}</legend><p className="section-note">{t("Міста в порядку поїздки. Обери підказку або впиши своє. Можна заповнити пізніше.")}</p>
- {points.map((point,index)=><div className="route-point" key={index}><Autocomplete ref={element=>{inputs.current[index]=element;if(index===0)field.ref(element);}} label={t('Місто {count}',{count:index+1})} value={point} data={citySuggestions.map(city=>t(city))} maxLength={150} placeholder={t("Почни вводити місто")} onBlur={field.onBlur} onChange={value=>update(points.map((item,i)=>i===index?value:item))} className="kit-field" comboboxProps={{withinPortal:true}}/>
+ {points.map((point,index)=><div className="route-point" key={index}><Autocomplete ref={element=>{inputs.current[index]=element;if(index===0)field.ref(element);}} label={t('Місто {count}',{count:index+1})} value={point} data={citySuggestions.map(city=>t(city))} maxLength={150} placeholder={t("Почни вводити місто")} onBlur={field.onBlur} onChange={value=>update(points.map((item,i)=>i===index?value:item))} className="kit-field" classNames={{dropdown:'request-city-dropdown'}} withScrollArea={false} comboboxProps={{withinPortal:false}}/>
  <UtilityButton className="route-remove" aria-label={t('Прибрати місто {count}',{count:index+1})} onClick={()=>{pendingFocus.current=Math.max(0,index-1);update(points.length===1?['']:points.filter((_,i)=>i!==index));}}>×</UtilityButton></div>)}
  {fieldState.error&&<p role="alert">{fieldState.error.message}</p>}
  <UtilityButton className="route-add" disabled={points.length>=12} onClick={()=>{pendingFocus.current=points.length;update([...points,'']);}}>{t("+ Додати місто")}</UtilityButton>
@@ -60,17 +60,17 @@ function TypePicker(){
   if(type===field.value)return;
   const keys=[...new Set([...Object.values(fieldsByType).flat().filter(key=>key!=='dates'),'idea','dateRange'])];
   drafts.current[field.value]=Object.fromEntries(keys.map(key=>[key,getValues(key)]));
-  for(const key of keys)setValue(key,drafts.current[type]?.[key]??(key==='dateRange'?[null,null]:''));
+  for(const key of keys)setValue(key,drafts.current[type]?.[key]??(key==='dateRange'?[]:''));
   field.onChange(type);clearErrors();
  };
  return <fieldset className="format-picker"><legend>{t("З чим звертаєшся?")}</legend><div className="format-options">{types.map((type,index)=><label key={type} className={field.value===type?'selected':''}><input type="radio" name={field.name} value={type} checked={field.value===type} onChange={()=>change(type)}/><span><strong>{t(typeTitles[type]||type)}</strong><small>{t(typeNotes[index])}</small></span><span className="format-check" aria-hidden="true"><InterfaceIcon kind={field.value===type?'check':'circle'}/></span></label>)}</div><p className="format-selected-note">{t(typeNotes[types.indexOf(field.value)])}</p></fieldset>;
 }
 const steps=['Знайомство','Деталі','Перевірка'];
 const titles=['Почнімо зі знайомства.', 'Твій задум. Наші задачі.', 'Усе важливе — тут.'];
-export function CooperationForm({initialType}) {
+export function CooperationForm({initialType,onCalendarOpenChange}) {
  const {t, language, href:localeHref} = useLanguage();
  const methods = useForm({mode:'onTouched', reValidateMode:'onChange', shouldFocusError:true,
-  defaultValues:{type:initialType,...Object.fromEntries(Object.keys(labels).map(key=>[key,''])),dateRange:[null,null]}});
+  defaultValues:{type:initialType,...Object.fromEntries(Object.keys(labels).map(key=>[key,''])),dateRange:[]}});
  const {control} = methods;
  const previousLanguage=useRef(language);
  useEffect(()=>{
@@ -135,19 +135,19 @@ export function CooperationForm({initialType}) {
    <Field name="idea" label={t(prompts[type].label)} hint={t(prompts[type].hint)} placeholder={t("Розкажи своїми словами")} kind="textarea" rows={4} required maxLength={5000}/>
    {type==='Постійна співпраця'&&<fieldset className="request-section"><legend>{t("Про твій проєкт")}</legend><Field name="goals" kind="textarea" rows={3} maxLength={1500}/><Field name="team" kind="textarea" rows={2} maxLength={1000}/></fieldset>}
    {['Концерт','Тур / поїздка','Окреме завдання'].includes(type)&&<Field name="readiness" kind="textarea" rows={2} maxLength={1000}/>}
-   {type==='Концерт'&&<fieldset className="request-section"><legend>{t("Деталі, якщо вже відомі")}</legend><Field name="city" maxLength={150}/><DateField/>
+   {type==='Концерт'&&<fieldset className="request-section"><legend>{t("Деталі, якщо вже відомі")}</legend><Field name="city" maxLength={150}/><DateField onCalendarOpenChange={onCalendarOpenChange}/>
     <details className="request-extra"><summary>{t("Додати інформацію про виступ")}</summary><p className="section-note">{t("Можна пропустити, якщо це не стосується твоєї задачі.")}</p>
      <Field name="eventRole"/><Field name="format"/><Field name="duration"/><Field name="audience"/><Field name="previous" kind="textarea" rows={3} maxLength={1000}/>
     </details></fieldset>}
-   {type==='Тур / поїздка'&&<><RouteField/><DateField/><Field name="crew" kind="textarea" rows={2} maxLength={500}/></>}
-   {type==='Окреме завдання'&&<DateField/>}
+   {type==='Тур / поїздка'&&<><RouteField/><DateField onCalendarOpenChange={onCalendarOpenChange}/><Field name="crew" kind="textarea" rows={2} maxLength={500}/></>}
+   {type==='Окреме завдання'&&<DateField onCalendarOpenChange={onCalendarOpenChange}/>}
    </div>
    {step===2&&!saved&&<div className="request-review">
     <div className="review-format"><div><span>{t("Формат співпраці")}</span><strong>{t(typeTitles[type]||type)}</strong></div><UtilityButton disabled={sending} onClick={()=>goTo(0)}>{t("Змінити формат")}</UtilityButton></div>
     {[{title:t("Контакти"),keys:commonFields,step:0},{title:t("Твій запит"),keys:['idea',...(fieldsByType[type]||[])],step:1}].map(group=><section className="review-group" key={group.title}><div className="review-group-heading"><h3>{group.title}</h3><UtilityButton aria-label={group.step===0?t("Змінити контакти"):t("Змінити деталі")} disabled={sending} onClick={()=>goTo(group.step)}>{t("Змінити")}</UtilityButton></div><dl>{group.keys.filter(key=>String(reviewValues[key]??'').trim()).map(key=><div key={key}><dt>{t(labels[key])}</dt><dd>{String(reviewValues[key]).trim()}</dd></div>)}</dl></section>)}
    </div>}
 
-   {saved&&<div className="request-success" role="status"><span aria-hidden="true"><InterfaceIcon/></span><strong>{t("Залишаймося на зв’язку.")}</strong><p>{t("Якщо хочеш щось додати до відповідей, напиши нам.")}</p><a href="mailto:yars.agency@gmail.com">{t("Написати YAR")} <InterfaceIcon/></a><UtilityButton onClick={()=>{methods.reset({type:initialType,...Object.fromEntries(Object.keys(labels).map(key=>[key,''])),dateRange:[null,null]});setDraftVersion(value=>value+1);setSaved(false);goTo(0);}}>{t("Нове звернення")}</UtilityButton></div>}
+   {saved&&<div className="request-success" role="status"><span aria-hidden="true"><InterfaceIcon/></span><strong>{t("Залишаймося на зв’язку.")}</strong><p>{t("Якщо хочеш щось додати до відповідей, напиши нам.")}</p><a href="mailto:yars.agency@gmail.com">{t("Написати YAR")} <InterfaceIcon/></a><UtilityButton onClick={()=>{methods.reset({type:initialType,...Object.fromEntries(Object.keys(labels).map(key=>[key,''])),dateRange:[]});setDraftVersion(value=>value+1);setSaved(false);goTo(0);}}>{t("Нове звернення")}</UtilityButton></div>}
    {sendError&&<p ref={errorNotice} tabIndex={-1} className="request-send-error" role="alert">{t(sendError)}</p>}
   </div>
   <div className="request-footer"><div className="request-footer-note">{saved?'':step===0?'':step===1?'':<>{t("Відповіді надійдуть команді YAR для обговорення співпраці.")} <a href={localeHref('/privacy.html')} target="_blank" rel="noreferrer">{t("Політика конфіденційності")}<span className="sr-only"> {t("(нова вкладка)")}</span></a>.</>}</div><div className="request-actions">{!saved&&step>0&&<UtilityButton disabled={sending} className="request-back" onClick={()=>{setSendError('');goTo(step-1);}}>{t("Назад")}</UtilityButton>}{!saved&&<ActionButton type="submit" tone="red" size="small" busy={sending}>{step===2?t("Надіслати анкету"):t("Далі")}</ActionButton>}</div></div>

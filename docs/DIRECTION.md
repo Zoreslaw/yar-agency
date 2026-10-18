@@ -239,3 +239,17 @@ Use a compact disclosure through 900px, including tablets. Hamburger turns into 
 Use three equal columns with consistent gaps above 760px. Keep the original mark vertically centred in its column and align agency/contact labels at the top. At 760px and below, centre the logo above two equal link columns and centre the policy row. Hide trailing contact arrows through 900px to preserve room for actual contact text; leading icons remain. Content and links unchanged.
 
 Footer position correction — 17 October 2026: align the logo to the top of the desktop/tablet columns. Below 760px keep the centred logo above equal link columns; centre each column's heading and link groups within its own half instead of leaving both groups at their left edges.
+
+
+## Mobile introduction — 18 October 2026
+Scoped photographs.css correction on feature/mobile-intro-layout. Hide the decorative desktop route through 650px: its section-relative path crossed the stacked text/photo composition. Replace fixed-height absolute mobile photo positioning with an overlapping grid that reserves the actual image height; keep 40px below the photos. Desktop, source media, copy and entrance behavior unchanged. Browser inspected Ukrainian at 320/390/650 and desktop 1440; no document overflow, both photos loaded and contained. Polish/English at 320 have no document or heading overflow. check/build/standalone and diff whitespace pass, with existing dependency use-client warnings. No commit, push or deployment. Pre-existing questionnaire changes preserved.
+
+
+## Mobile team action — 18 October 2026
+At 650px and below, place the team contact action after the complete introduction and origin story. Keep the desktop action beneath the left-column heading. One shared link follows the text in document order; CSS grid preserves the desktop composition.
+
+## Questionnaire touch controls and dates — 18 October 2026
+City suggestions stay inside the questionnaire dialog and use native scrolling, with 44px options. Suppress text selection on action controls while preserving editable fields. User confirmed dates mean separate days, including nonconsecutive dates: use multiple selection, a consistent calendar dialog and an explicit Done action. Repeated taps deselect dates; closing preserves the list. Calendar Escape must leave the questionnaire open. Keep all three locales and the existing email payload structure.
+
+## Mobile footer refinement — 18 October 2026
+Keep the original centred mark above the mobile footer groups. Align both link groups to the left; give contacts their natural content width and navigation the remaining space, replacing centred equal halves. Desktop thirds and the centred mobile policy link remain.
